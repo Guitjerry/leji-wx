@@ -1,0 +1,39 @@
+<template name="home-row">
+  <view class='shop-item ui-border-b'>
+    <image src='{{item.portraitUrl}}' class='avatar'></image>
+    <view class='content'>
+      <view class='name'>
+        <text class='shop-name'>{{item.retailerName}}</text>
+      </view>
+      <view class='rating'>
+        <view class='left'>
+          <text> 人均配送费{{item.averageDeliveryPrice}}元</text>
+        </view>
+      </view>
+      <view class='delivery'>
+        <view class='left'>
+          <text>{{item.deliveryOrders.length}}张订单待配送</text>
+        </view>
+        <view class='right'>
+          <text class='distance'>距您 | {{item.distance}}m</text>
+        </view>
+      </view>
+    </view>
+    <view style="line-height: 60px; font-size: 16px;border-left: 2px solid;border-color:#F5F5F5; ">
+      <text style="text-align: center; ">进店看看</text>
+    </view>
+  </view>
+  <view>
+    <view class="left">
+      {{item.retailerAddress}}
+    </view>
+    <view class="right">
+      ^
+    </view>
+  </view>
+  <block wx:for="{{item.deliveryOrders}}" wx:key="id">
+    <view data-id="{{item.id}}" data-index="{{ index }}">
+      {{item.userAddress}}
+    </view>
+  </block>
+</template>

@@ -1,0 +1,158 @@
+.pyg_index {
+  padding: 10rpx;
+  background-color: #f6f6f6;
+}
+.index_swiper swiper {
+  width: 750rpx;
+  height: 340rpx;
+}
+.index_swiper swiper image {
+  width: 100%;
+}
+.index_cate {
+  display: flex;
+}
+.index_cate navigator {
+  padding: 20rpx;
+  flex: 1;
+}
+.index_cate navigator image {
+  width: 100%;
+}
+/*新品推荐*/
+.sale_recommend {
+  margin: 20rpx 10rpx;
+  background-color: #fff;
+  padding: 10rpx;
+  border-radius: 20rpx;
+}
+.sale_recommend .title {
+  margin-bottom: 10px;
+}
+.sale_recommend .title .info {
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  margin-right: 39%;
+}
+.sale_recommend .title .desc {
+  background-color: #ff8491;
+  font-size: 20rpx;
+  width: 300rpx;
+  text-align: center;
+  height: 34rpx;
+  line-height: 34rpx;
+  vertical-align: middle;
+  border-radius: 30rpx;
+  color: #fff;
+}
+.sale_recommend .body .single{
+  padding: 10rpx;
+
+}
+.sale_recommend .body image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.sale_recommend .body .info {
+  margin-top: 10rpx;
+  text-align: center;
+}
+
+/*人气推荐*/
+.hot_recommend {
+  margin: 20rpx 10rpx;
+  background-color: #fff;
+  padding: 10rpx;
+  border-radius: 20rpx;
+}
+.hot_recommend .title {
+  margin-bottom: 10px;
+}
+.hot_recommend .title .info {
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  margin-right: 39%;
+}
+.hot_recommend .title .desc {
+  background-color: #ffa500;
+  font-size: 20rpx;
+  width: 300rpx;
+  text-align: center;
+  height: 34rpx;
+  line-height: 34rpx;
+  vertical-align: middle;
+  border-radius: 30rpx;
+  color: #fff;
+}
+
+.hot_recommend .body {
+  margin: 20rpx;
+}
+.hot_recommend .body .single{
+  padding: 10rpx;
+  width: 46%;
+  border-radius: 20rpx;
+  border: 1rpx solid #f6f6f6;
+  margin: 10rpx;
+}
+.hot_recommend .body image {
+  width: 286rpx;
+  height: 286rpx;
+}
+
+.hot_recommend .body .info {
+  margin-top: 10rpx;
+  color: red;
+}
+.hot_recommend .body .desc {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  margin-top: 10rpx;
+  text-align: center;
+}
+
+
+.brand_zone {
+  margin: 20rpx 10rpx;
+  background-color: #fff;
+  padding: 10rpx;
+  border-radius: 20rpx;
+}
+.brand_zone .title {
+  margin-bottom: 10px;
+}
+.brand_zone .title .info {
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  margin-right: 39%;
+}
+.brand_zone .title .desc {
+  background-color: #8276ff;
+  font-size: 20rpx;
+  width: 300rpx;
+  text-align: center;
+  height: 34rpx;
+  line-height: 34rpx;
+  vertical-align: middle;
+  border-radius: 30rpx;
+  color: #fff;
+}
+.brand_zone .body .single{
+  padding: 10rpx;
+}
+.brand_zone .body image {
+  width: 155rpx;
+  height: 155rpx;
+  padding: 10rpx;
+}
+
+.brand_zone .body .info {
+  margin-top: 10rpx;
+  text-align: center;
+}

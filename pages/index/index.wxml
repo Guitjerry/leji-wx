@@ -1,0 +1,118 @@
+<view class="pyg_index">
+    <!-- 搜索框 开始 -->
+    <SearchInput></SearchInput>
+    <!-- 搜索框 结束 -->
+    <!-- 轮播图 开始 -->
+    <view class="index_swiper">
+        <!--
+          1 swiper标签存在默认的宽度和高度
+            100% * 150px
+          2 image标签也存在默认的宽度和高度
+            320px * 240px
+          3 设计图片和轮播图
+            1 先看一下原图的宽高  750 * 340
+            2 让图片的高度自适应 宽度 等于100%
+            3 让swiper标签的高度 变成和图片的高一样即可
+          4 图片标签
+            mode属性 渲染模式
+              widthFix  让图片的标签宽高 和 图片标签的内容的宽高都等比例的发生变化
+         -->
+        <swiper autoplay indicator-dots circular>
+            <swiper-item
+                    wx:for="{{swiperList}}"
+                    wx:key="goods_id"
+
+            >
+                <navigator url="{{item.navigator_url}}">
+                    <image mode="widthFix" src="{{item.pic}}"></image>
+                </navigator>
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 轮播图 结束 -->
+
+    <!-- 导航 开始 -->
+    <view class="index_cate">
+        <navigator
+                wx:for="{{catesList}}"
+                wx:key="name"
+                url="/pages/category/index"
+                open-type="switchTab"
+        >
+            <view class="catory_list">
+                <view class="grid grid-center">
+                    <image mode="widthFix" src="{{item.icon}}"></image>
+                </view>
+                <view class="grid grid-center">{{item.name}}</view>
+            </view>
+        </navigator>
+    </view>
+    <!-- 导航 结束 -->
+
+    <!--易记秒杀-->
+    <view>
+
+    </view>
+
+    <!--新品推荐-->
+    <view class="sale_recommend">
+        <view class="title grid">
+            <view class="info">新品推荐</view>
+            <view class="desc">新品推荐，潮流好货</view>
+        </view>
+
+        <view class="grid  body">
+            <view wx:for="{{newGoodList}}" wx:key="id" wx:if="{{index<5}}" class="single">
+                <view class="image">
+                    <image src="{{item.pic}}"></image>
+                </view>
+                <view class="info">
+                    {{item.originalPrice}}元
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <!--人气推荐-->
+    <view class="hot_recommend">
+        <view class="title grid">
+            <view class="info">天天特价</view>
+            <view class="desc">好品好价，尽在天天特价</view>
+        </view>
+
+        <view class="grid body">
+            <view wx:for="{{RecommendProductList}}" wx:key="id" wx:if="{{index<5}}" class="single">
+                <view class="image">
+                    <image src="{{item.pic}}"></image>
+                </view>
+                <view class="desc">
+                    {{item.subTitle}}
+                </view>
+                <view class="info">
+                    <text>￥{{item.originalPrice}}元</text>
+                    <text wx:if="{{item.unit}}">/{{item.unit}}</text>
+
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <!--品牌专区-->
+    <view class="brand_zone">
+        <view class="title grid">
+            <view class="info">大牌驾到</view>
+            <view class="desc">大牌好货，天天都是开门红</view>
+        </view>
+
+        <view class="grid  body">
+            <view wx:for="{{newBrandList}}" wx:key="id" class="single">
+                <view class="image">
+                    <image src="{{item.logo}}"></image>
+                </view>
+                <view class="info">
+                    {{item.recommend || '爆品推荐'}}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

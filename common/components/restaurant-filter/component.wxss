@@ -1,0 +1,72 @@
+.filter-body {
+  background-color: #fff;
+}
+
+.filter-block {
+  padding: 0 20rpx 10rpx;
+}
+
+.filter-block-title {
+  font-size: 24rpx;
+  padding: 0 10rpx;
+  line-height: 3;
+}
+
+.filter-block-item {
+  display: inline-flex;
+  vertical-align: top;
+  align-items: center;
+  border: 1rpx solid #eee;
+  font-size: 24rpx;
+  height: 60rpx;
+  margin: 0 10rpx 10rpx 10rpx;
+  width: calc(33.3% - 20rpx);
+  border-radius: 4rpx;
+  padding: 0 14rpx;
+}
+
+.filter-block-item-active {
+  color: #0097ff;
+  border: 1rpx solid #a2d2ff;
+  background-color: #edf5ff;
+}
+
+.filter-block-item-active:before {
+  content: '';
+  margin: 0 20rpx 0 10rpx;
+  width: 15rpx;
+  height: 28rpx;
+  border-bottom: 4rpx solid #0097ff;
+  border-right: 4rpx solid #0097ff;
+  transform-origin: 50% 50%;
+  transform: translateY(-5rpx) rotateZ(45deg);
+}
+
+.filter-footer {
+  background-color: #fafafa;
+  padding: 15rpx 0 10rpx 0;
+}
+
+.filter-icon {
+  font-size: 24rpx;
+  padding: 2rpx 6rpx;
+  border-radius: 4rpx;
+  text-align: center;
+  margin-right: 10rpx;
+  border: 1rpx solid currentColor;
+}
+
+.filter-icon-sp {
+  border: none;
+  color: #fff;
+}
+
+.filter-btn {
+  display: inline-block;
+  width: calc(50% - 20rpx);
+  height: 80rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  margin: 0 10rpx;
+}
+

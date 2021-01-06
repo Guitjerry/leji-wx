@@ -1,0 +1,51 @@
+<view class="cates">
+    <SearchInput></SearchInput>
+    <view class="cates_container">
+        <!-- 左侧菜单 -->
+        <scroll-view scroll-y class="left_menu">
+            <view
+                    class="menu_item {{index===currentIndex?'active':''}}"
+                    wx:for="{{leftMenuList}}"
+                    wx:key="*this"
+                    bindtap="handleItemTap"
+                    data-index="{{index}}"
+            >
+                {{item}}
+            </view>
+        </scroll-view>
+        <!-- 右侧商品内容 -->
+        <scroll-view scroll-top="{{scrollTop}}" scroll-y class="right_content">
+            <view class="goods_title grid">
+                <text class="grid grid-center title {{categoryId == item1.id? 'selected': ''}} " wx:for="{{rightContent}}"
+                      wx:for-index="index1"
+                      wx:for-item="item1" bindtap="listGood" data-id="{{item1.id}}">{{item1.name}}
+                </text>
+            </view>
+            <view wx:for="{{goodList}}"  wx:key="*this" class="grid goods_body">
+                <view class="left">
+                    <image src="{{item.pic}}"></image>
+                </view>
+                <view class="right">
+                    <view class="good_name">{{item.name}}</view>
+                    <view class="good_description">{{item.subTitle}}</view>
+                    <view class="grid good_price">
+                        <text class="icon">促</text>
+                        <text class="sale_price_pre">{{item.price}}</text>
+                        <text class="sale_price_last">.00元/箱</text>
+                    </view>
+                    <view class="grid grid-right add_btn">
+                        <text bindtap="{{item.count ==0?'':'goodSubtraction'}}" data-index="{{index}}">-</text>
+                        <text>{{item.count || 0}}</text>
+                        <text bindtap="goodAdd" data-index="{{index}}" data-good="{{item}}">+</text>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="cart grid grid-middle grid-center" bindtap="toCart">
+            <view class="icon_border grid grid-middle grid-center">
+                <image class="icon" src="../../icons/cart_selected.png"></image>
+                <text class="grid grid-middle grid-center" wx:if="{{cartCount>0}}">{{cartCount}}</text>
+            </view>
+        </view>
+    </view>
+</view>

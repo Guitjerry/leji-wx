@@ -1,0 +1,11 @@
+<template name="restaurant-sort">
+  <view class="sortby">
+    <view class="sortby-item" wx:for="{{list}}" wx:key="id" catchtap="searchBySort" data-id="{{item.id}}">
+      <image class="sortby-item-img"></image>
+      <view class="sortby-item-wrapper">
+        <view class="sortby-item-name middle-size {{item.id === selected ? 'blue' : ''}}">{{item.name}}</view>
+        <view hidden="{{item.id !== selected}}" class="sortby-icon"></view>
+      </view>
+    </view>
+  </view>
+</template>

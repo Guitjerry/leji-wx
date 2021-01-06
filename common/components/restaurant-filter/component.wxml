@@ -1,0 +1,28 @@
+<template name="restaurant-filter">
+  <view class="filter">
+    <view class="filter-body">
+      <view class="filter-block">
+        <view class="filter-block-title gray">配送方式</view>
+        <view class="filter-block-wrapper">
+          <view class="filter-block-item {{item.selected ? 'filter-block-item-active' : ''}}" data-tag="deliveryMode" data-index="{{index}}" wx:for="{{deliveryMode}}" wx:key="id" catchtap="chooseFilter">{{item.text}}</view>
+        </view>
+      </view>
+      <view class="filter-block">
+        <view class="filter-block-title gray">优惠活动</view>
+        <view class="filter-block-wrapper">
+          <view class="filter-block-item {{item.selected ? 'filter-block-item-active' : ''}}" data-tag="activityTypes" data-index="{{index}}" wx:for="{{activityTypes}}" wx:key="id" catchtap="chooseFilter"><view class="filter-icon filter-icon-sp" hidden="{{item.selected}}" style="background-color: #{{item.icon_color}}">{{item.icon_name}}</view>{{item.name}}</view>
+        </view>
+      </view>
+      <view class="filter-block">
+        <view class="filter-block-title gray">商家属性(可多选)</view>
+        <view class="filter-block-wrapper">
+          <view class="filter-block-item {{item.selected ? 'filter-block-item-active' : ''}}" data-tag="activityAttribute" data-index="{{index}}" wx:for="{{activityAttribute}}" wx:key="id" catchtap="chooseFilter"><view class="filter-icon" hidden="{{item.selected}}" style="color: #{{item.icon_color}}">{{item.icon_name}}</view>{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="filter-footer">
+      <button type="default" class="filter-btn" catchtap="clearFilter">清空</button>
+      <button type="primary" class="filter-btn" catchtap="searchByFilter">确定</button>
+    </view>
+  </view>
+</template>

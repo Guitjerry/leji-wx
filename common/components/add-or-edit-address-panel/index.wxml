@@ -1,0 +1,88 @@
+<import src="../../sushe-address/index.wxml"></import>
+<template name="add-or-edit-address-panel">
+  <view class="section-wrapper">
+    <view class="section address-contact">
+      <view class="section-name">联系人</view>
+      <view class="section-content">
+        <view class="name row">
+          <input type="text" placeholder-class="placeholder" value="{{address.name}}" placeholder="收货人姓名" bindinput="onNameInput"></input>
+        </view>
+        <view class="divider"></view>
+        <view class="sex row">
+          <view class="male" bindtap="setGenderMale">
+            <image wx:if="{{address.gender === 1}}" src="https://retailer.citizenroo.com/icon/my/selected.png"></image>
+            <image wx:if="{{address.gender !== 1}}" src="https://retailer.citizenroo.com/icon/my/not_selected.png"></image>
+            <text>先生</text>
+          </view>
+          <view class="female" bindtap="setGenderFemale">
+            <image wx:if="{{address.gender === 2}}" src="https://retailer.citizenroo.com/icon/my/selected.png"></image>
+            <image wx:if="{{address.gender !== 2}}" src="https://retailer.citizenroo.com/icon/my/not_selected.png"></image>
+            <text>女士</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="divider"></view>
+  </view>
+
+
+  <view class="section-wrapper">
+    <view class="section address-phone">
+      <view class="section-name">联系电话</view>
+      <view class="section-content">
+        <view class="phone row">
+          <input class="input-phone" type="number" maxlength="11" value="{{address.mobile}}" placeholder-class="placeholder" bindinput="onPhoneInput" placeholder="收货人电话"></input>
+        </view>
+      </view>
+    </view>
+    <view class="divider"></view>
+  </view>
+
+
+  <view class="section-wrapper">
+    <view class="section address-location">
+      <view class="section-name">送货地址</view>
+      <view class="section-content">
+        <view class="title row addressLine" >
+           <text bindtap="goToSelectAddress" >{{address.address || '选择具体地址'}}</text>
+          
+        </view>
+        <view class="divider"></view>
+        <view class="detail row">
+          <textarea type="text" value="{{address.houseNumber}}" placeholder-class="placeholder" bindinput="onAddressDetailChange" placeholder="详细地址（如宿舍号等）"></textarea>
+        </view>
+      </view>
+    </view>
+    <view class="divider"></view>
+  </view>
+
+
+  <view class="section-wrapper">
+    <view class="section address-tag">
+      <view class="section-name">标签</view>
+      <view class="section-content">
+        <view class="row layout-right">
+          <picker mode="selector" bindchange="selectTag" value="{{index}}" range="{{tags}}">
+            <text class="null" wx:if="{{!address.tag && !address.tag_type}}">请选择标签</text>
+            <text class="address-tag" style="color: #666;" wx:if="{{address.tag === '无' || address.tag_type === 0}}">无</text>
+            <text class="address-tag" style="background: #ff6020;" wx:if="{{address.tag === '家' || address.tag_type === 1}}">家</text>
+            <text class="address-tag" style="background: #0097ff;" wx:if="{{address.tag === '学校' || address.tag_type === 2}}">学校</text>
+            <text class="address-tag" style="background: #5dcf7b;" wx:if="{{address.tag === '公司' || address.tag_type === 3}}">公司</text>
+            <view class="more"></view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-wrapper">
+    <view class="section address-tag">
+      <view class="section-name">是否默认</view>
+      <view class="section-content grid grid-bottom grid-center">
+        <view>
+         <switch class="switch-btn" color="#d8110a" type="switch" checked="{{address.isDefault === 1}}" bindchange="onIsDefaultInput"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

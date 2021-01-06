@@ -1,0 +1,29 @@
+.btn {
+  display: inline-block;
+  text-align: center;
+  min-width: 150rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 26rpx;
+  margin: 0 7rpx;
+  border: 1rpx solid rgb(204, 204, 204);
+  border-radius: 6rpx;
+  padding: 0 15rpx;
+  color: #666;
+}
+
+.btn-primary {
+  background-color: #3190e8;
+  color: #fff;
+  border-color: #3190e8;
+}
+
+.btn-warning {
+  background-color: rgb(255,96,0);
+  color: #fff !important;
+}
+
+.notify {
+  background: #fff;
+  padding: 30rpx;
+}

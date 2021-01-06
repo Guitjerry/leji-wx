@@ -1,0 +1,9 @@
+<template name="loading-component">
+  <view class="loading-wrapper">
+    <view class="all-loaded" wx:if="{{loadedAll}}">----没有更多了----</view>
+    <view class="grid" wx:else>
+       <view style="margin-left:45%;font-size:26rpx;color: #666;text-align:center;">加载中</view>
+       <image style="display: inline-block;width: 40rpx;height: 40rpx;" src="/common/icons/zhuanjuhua.gif"></image>
+    </view>
+  </view>
+</template>

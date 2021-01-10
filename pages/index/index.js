@@ -89,4 +89,14 @@ Page({
           })
         })
   },
+  toGoodList(e) {
+    const id = e.currentTarget.dataset.id
+    // let app = getApp();
+    // app.globalData.categoryId = id
+    wx.redirectTo({ url: '/pages/goods_list/index?cid=' + id })
+  },
+  listByBrandId(e) {
+    const id = e.currentTarget.dataset.id
+    wx.redirectTo({ url: '/pages/goods_list/index?brandId=' + id })
+  }
 })

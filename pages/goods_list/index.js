@@ -59,16 +59,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.QueryParams.cid=options.cid||"";
+    this.QueryParams.productCategoryId=options.cid||"";
+    this.QueryParams.brandId=options.brandId||"";
     this.QueryParams.query=options.query||"";
     this.getGoodsList();
-
-
   },
 
   // 获取商品列表数据
   async getGoodsList(){
-    const res=await request({url:"/goods/search",data:this.QueryParams});
+    const res=await request({url:"/product/list",data:this.QueryParams});
     // 获取 总条数
     const total=res.total;
     // 计算总页数
@@ -76,7 +75,7 @@ Page({
     // console.log(this.totalPages);
     this.setData({
       // 拼接了数组
-      goodsList:[...this.data.goodsList,...res.goods]
+      goodsList:[...this.data.goodsList,...res.data.list]
     })
 
     // 关闭下拉刷新的窗口 如果没有调用下拉刷新的窗口 直接关闭也不会报错  

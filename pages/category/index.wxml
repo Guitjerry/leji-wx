@@ -2,7 +2,8 @@
     <SearchInput></SearchInput>
     <view class="cates_container">
         <!-- 左侧菜单 -->
-        <scroll-view scroll-y class="left_menu">
+        <scroll-view scroll-y class="left_menu" scroll-into-view="{{'item-' + categoryId}}">
+
             <view
                     class="menu_item {{index===currentIndex?'active':''}}"
                     wx:for="{{leftMenuList}}"
@@ -10,7 +11,8 @@
                     bindtap="handleItemTap"
                     data-index="{{index}}"
             >
-                {{item}}
+                <view id="{{'item-' + categoryId}}">{{item.name}}</view>
+
             </view>
         </scroll-view>
         <!-- 右侧商品内容 -->

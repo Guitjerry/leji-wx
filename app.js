@@ -10,7 +10,6 @@ Dave.config({
 })
 const { User, Pay, ApiCreater, Ubt, HashToUrl } = Dave
 const CartService = require('common/services/cart.js')
-
 const setSceneAndQrcodeForUbt = (options) => {
   // 用来方便线上看到 log 信息
   console.log('------- Set scene and qrcode -----------')
@@ -34,6 +33,7 @@ const setSceneAndQrcodeForUbt = (options) => {
 Object.assign = Object.assign || require('./libs/object-assign')
 
 App({
+  globalData:{},
   extend(objs, overwrite = false) {
     var newbee = {}
     objs.forEach(obj => {

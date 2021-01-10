@@ -33,7 +33,6 @@ Page({
     2 没有旧数据 直接发送新请求 
     3 有旧的数据 同时 旧的数据也没有过期 就使用 本地存储中的旧数据即可
      */
-
     //  1 获取本地存储中的数据  (小程序中也是存在本地存储 技术)
     const Cates = wx.getStorageSync("cates");
     // 2 判断
@@ -48,7 +47,10 @@ Page({
       } else {
         // 可以使用旧的数据
         this.Cates = Cates.data;
-        let leftMenuList = this.Cates.map(v => v.name);
+        let leftMenuList =[]
+        this.Cates.forEach(cate=> {
+          leftMenuList.push({id:cate.id, name: cate.name})
+        })
         let rightContent = this.Cates[0].children;
         this.setData({
           leftMenuList,
@@ -59,6 +61,14 @@ Page({
 
   },
   onShow() {
+    const categoryId=getApp().globalData.categoryId||"";
+    if(categoryId) {
+      this.setData({
+        categoryId
+      })
+      this.leftMenuList
+
+    }
     if(this.data.categoryId) {
       this.listGoodByCategoryId(this.data.categoryId)
     }
@@ -70,7 +80,10 @@ Page({
     // 把接口的数据存入到本地存储中
     wx.setStorageSync("cates", { time: Date.now(), data: this.Cates });
     // 构造左侧的大菜单数据
-    let leftMenuList = this.Cates.map(v => v.name);
+    let leftMenuList =[]
+    this.Cates.forEach(cate=> {
+      leftMenuList.push({id:cate.id, name: cate.name})
+    })
     // 构造右侧的商品数据
     let rightContent = this.Cates[0].children;
     this.setData({
@@ -80,7 +93,8 @@ Page({
   },
   // 左侧菜单的点击事件
   handleItemTap(e) {
-    /* 
+    console.info('点击的数据' + JSON.stringify(e))
+    /*
     1 获取被点击的标题身上的索引
     2 给data中的currentIndex赋值就可以了
     3 根据不同的索引来渲染右侧的商品内容

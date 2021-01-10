@@ -33,10 +33,11 @@
 
     <!-- 导航 开始 -->
     <view class="index_cate">
-        <navigator
+        <view class="goodCategory"
                 wx:for="{{catesList}}"
                 wx:key="name"
-                url="/pages/category/index"
+                bindtap="toGoodList"
+                data-id="{{item.id}}"
                 open-type="switchTab"
         >
             <view class="catory_list">
@@ -45,7 +46,7 @@
                 </view>
                 <view class="grid grid-center">{{item.name}}</view>
             </view>
-        </navigator>
+        </view>
     </view>
     <!-- 导航 结束 -->
 
@@ -105,7 +106,7 @@
         </view>
 
         <view class="grid  body">
-            <view wx:for="{{newBrandList}}" wx:key="id" class="single">
+            <view wx:for="{{newBrandList}}" wx:key="id" class="single" bindtap="listByBrandId" data-id="{{item.brandId}}">
                 <view class="image">
                     <image src="{{item.logo}}"></image>
                 </view>

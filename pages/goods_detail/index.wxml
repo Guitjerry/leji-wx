@@ -10,7 +10,7 @@
     bindtap="handlePrevewImage"
     data-url="{{item.pics_mid}}"
     >
-    <image mode="widthFix" src="{{item.pics_mid}}" ></image>
+    <image mode="widthFix" src="{{item}}" ></image>
     </swiper-item>
   </swiper>
 </view>
@@ -28,7 +28,6 @@
   <view class="goods_info_title">图文详情</view>
   <view class="goods_info_content">
     <!-- 富文本 -->
-    <!-- {{goodsObj.goods_introduce}} -->
     <rich-text nodes="{{goodsObj.goods_introduce}}"></rich-text>
   </view>
 </view>

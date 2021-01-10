@@ -12,11 +12,11 @@
 .index_cate {
   display: flex;
 }
-.index_cate navigator {
+.index_cate .goodCategory {
   padding: 20rpx;
   flex: 1;
 }
-.index_cate navigator image {
+.index_cate .goodCategory image {
   width: 100%;
 }
 /*新品推荐*/

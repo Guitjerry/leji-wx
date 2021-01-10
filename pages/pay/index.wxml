@@ -11,7 +11,7 @@
   
   <!-- 购物车内容 -->
   <view class="cart_content">
-    <view class="cart_title">购物车</view>
+    <view class="cart_title">商品信息</view>
     <view class="cart_main">
           <view class="cart_item"
         wx:for="{{cart}}"
@@ -19,15 +19,15 @@
         >
             <!-- 商品图片 -->
             <navigator class="cart_img_wrap">
-            <image mode="widthFix" src="{{item.goods_small_logo}}" ></image>
+            <image mode="widthFix" src="{{item.pic}}" ></image>
             </navigator>
             <!-- 商品信息 -->
             <view class="cart_info_wrap">
-              <view class="goods_name">{{item.goods_name}}</view>
+              <view class="goods_name">{{item.name}}</view>
               <view class="goods_price_wrap">
-                <view class="goods_price">￥{{item.goods_price}}</view>
+                <view class="goods_price">￥{{item.price}}</view>
                 <view class="cart_num_tool">
-                  <view class="goods_num">X {{item.num}}</view>
+                  <view class="goods_num">X {{item.count}}</view>
                 </view>
               </view>
             </view>
@@ -45,6 +45,6 @@
       <view>包含运费</view>
     </view>
     <view class="order_pay_wrap" bindtap="handleOrderPay"  >
-      支付({{totalNum}})
+      立即订购
     </view>
   </view>

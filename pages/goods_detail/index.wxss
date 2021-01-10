@@ -96,3 +96,155 @@ page {
   font-size: 30rpx;
   font-weight: 600;
 }
+/*使屏幕变暗  */
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+/*对话框 */
+.commodity_attr_box {
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
+}
+/*多规格*/
+.sku-body {
+  padding: 10rpx;
+}
+.sku-body .left image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.sku-body .right {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+.sku-body .right .no {
+  color: #c6c6c6;
+  font-size: 24rpx;
+}
+.sku-body .right .price {
+  color: #eb4450;
+  font-size: 26rpx;
+  margin-bottom: 10rpx;
+}
+.sku-body .right .price text:first-child{
+  font-size: 20rpx;
+}
+.sku-body .right .price text:last-child{
+  color: #eb4450;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.sku-body .right .selected text:first-child {
+  color: #c6c6c6;
+  font-size: 24rpx;
+}
+.sku-body .right .selected text:last-child {
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+
+.sku-body .model {
+  margin-top: 20rpx;
+  padding: 10rpx;
+}
+.sku-body .model .header{
+  font-size: 26rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.sku-body .model .body text {
+  background: #e6e6e6;
+  padding: 10rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  font-size: 24rpx;
+  vertical-align: center;
+  width: 44%;
+  margin: 20rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.sku-body .nums {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  font-weight: bold;
+}
+.sku-body .nums .body {
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.sku-body .nums .body .nums-middle {
+  background:#f6f6f6;
+  text-align: center;
+  width:100rpx;
+}
+.sku-body .nums .body .nums-left {
+  margin-right: 10rpx;
+  text-align: center;
+  vertical-align: center;
+  font-size: 38rpx;
+}
+.sku-body .nums .body .nums-right {
+  margin-left: 10rpx;
+  text-align: center;
+  vertical-align: center;
+  font-size: 38rpx;
+}
+.sku-body .nums .body .bottom {
+  margin-top: 20rpx;
+}
+.btn_confirm {
+  display: inline-block;
+  width: 95%;
+  margin-top: 20rpx;
+  text-align: center;
+  height:50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+  color: #fff;
+  background-color: #eb4450;
+}
+.un-selected {
+  color: #f6f6f6;
+}
+.product-choosed {
+  background-color: #ffa500!important;
+}
+.cart-main {
+  position: relative;
+}
+.icon-gouwuche-count {
+  position: absolute;
+  font-size: 20rpx;
+  background: #eb4450;
+  color: #fff;
+  border-radius: 50%;
+  width: 25rpx;
+  height: 25rpx;
+  line-height: 25rpx;
+  text-align: center;
+  vertical-align: center;
+  top: -40rpx;
+  right: 5rpx;
+}

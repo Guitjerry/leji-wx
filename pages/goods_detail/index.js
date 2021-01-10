@@ -30,7 +30,11 @@ Page({
   data: {
     goodsObj: {},
     // 商品是否被收藏
-    isCollect:false
+    isCollect:false,
+    productList: [],
+    goodCount:0,
+    chooseProduct:{},
+    cartCount: 0
   },
   // 商品对象
   GoodsInfo: {},
@@ -46,6 +50,18 @@ Page({
 
 
   },
+  coutGoodCartCount() {
+    let cart = wx.getStorageSync("cart") || [];
+    const goodId = this.GoodsInfo.id
+    if(cart.length > 0) {
+      const goodCart = cart.filter(cart => cart.id===goodId)
+      if(goodCart && goodCart.length>0) {
+        this.setData({
+          cartCount: goodCart[0].count
+        })
+      }
+    }
+  },
   // 获取商品详情数据
   async getGoodsDetail(goods_id) {
     const goodsObj = await request({ url: "/product/updateInfo/" + goods_id });
@@ -54,6 +70,28 @@ Page({
     let collect = wx.getStorageSync("collect") || [];
     // 2 判断当前商品是否被收藏
     let isCollect = collect.some(v => v.id === this.GoodsInfo.id);
+
+    const skuStockList = goodsObj.data.skuStockList
+    const productList = []
+    if(skuStockList && skuStockList.length>0) {
+      skuStockList.forEach(skuProduct => {
+        const spData = skuProduct.spData
+        if(spData) {
+          const spDataObj = JSON.parse(spData)
+          let name = ""
+          spDataObj.forEach(product => {
+            name += product.value
+          })
+          skuProduct.attrName = name
+          productList.push(skuProduct)
+        }
+      })
+      this.setData({
+        productList
+      })
+    }
+    //缓存中判断购物车数量
+    this.coutGoodCartCount()
     this.setData({
       goodsObj: {
         goods_name: goodsObj.data.name,
@@ -63,7 +101,7 @@ Page({
         // 临时自己改 确保后台存在 1.webp => 1.jpg 
         // goods_introduce: goodsObj.goods_introduce.replace(/\.webp/g, '.jpg'),
         goods_introduce: goodsObj.data.detailMobileHtml,
-        pics: goodsObj.data.albumPics.split(",")
+        pics: goodsObj.data.albumPics.split(","),
 
       },
       isCollect
@@ -83,31 +121,34 @@ Page({
   },
   // 点击 加入购物车
   handleCartAdd() {
-    // 1 获取缓存中的购物车 数组
-    let cart = wx.getStorageSync("cart") || [];
-    // 2 判断 商品对象是否存在于购物车数组中
-    let index = cart.findIndex(v => v.id === this.GoodsInfo.id);
-    if (index === -1) {
-      //3  不存在 第一次添加
-      this.GoodsInfo.count = 1;
-      this.GoodsInfo.checked = true;
-      cart.push(this.GoodsInfo);
-    } else {
-      // 4 已经存在购物车数据 执行 num++
-      cart[index].count++;
+    if(this.data.productList.length > 0) {
+      this.showModal()
+      return
+    }else {
+      // 1 获取缓存中的购物车 数组
+      let cart = wx.getStorageSync("cart") || [];
+      // 2 判断 商品对象是否存在于购物车数组中
+      let index = cart.findIndex(v => v.id === this.GoodsInfo.id);
+      if (index === -1) {
+        //3  不存在 第一次添加
+        this.GoodsInfo.count = 1;
+        this.GoodsInfo.checked = true;
+        cart.push(this.GoodsInfo);
+      } else {
+        // 4 已经存在购物车数据 执行 num++
+        cart[index].count++;
+      }
+      // 5 把购物车重新添加回缓存中
+      wx.setStorageSync("cart", cart);
+      // 6 弹窗提示
+      wx.showToast({
+        title: '加入成功',
+        icon: 'success',
+        // true 防止用户 手抖 疯狂点击按钮
+        mask: true
+      });
+      this.coutGoodCartCount()
     }
-    // 5 把购物车重新添加回缓存中
-    wx.setStorageSync("cart", cart);
-    // 6 弹窗提示
-    wx.showToast({
-      title: '加入成功',
-      icon: 'success',
-      // true 防止用户 手抖 疯狂点击按钮 
-      mask: true
-    });
-
-
-
   },
   // 点击 商品收藏图标
   handleCollect(){
@@ -143,8 +184,72 @@ Page({
     this.setData({
       isCollect
     })
-      
-      
+  },
+  //显示对话框
+  showModal: function () {
+    // 显示遮罩层
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus: true
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 200)
+  },
+  //隐藏对话框
+  hideModal: function () {
+    // 隐藏遮罩层
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus: false
+      })
+    }.bind(this), 200)
+  },
+  buyGood() {
+    if(this.data.productList.length > 0) {
+      this.showModal()
+    }
+  },
+  goodJian() {
+    let goodCount = this.data.goodCount
+    goodCount = goodCount>0 ? goodCount-1: goodCount
+    this.setData({
+      goodCount: goodCount
+    })
+  },
+  goodAdd() {
+    let goodCount = this.data.goodCount
+    this.setData({
+      goodCount: goodCount+1
+    })
+  },
+  chooseOne(e) {
+    const chooseProduct = e.currentTarget.dataset.item
+    this.setData({
+      chooseProduct:chooseProduct
+    })
   }
 
 })

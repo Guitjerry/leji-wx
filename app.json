@@ -48,7 +48,7 @@
       ,
       {
         "pagePath": "pages/cart/index",
-        "text": "购物车",
+        "text": "进货单",
         "iconPath": "icons/cart.png",
         "selectedIconPath": "icons/cart-o.png"
       }

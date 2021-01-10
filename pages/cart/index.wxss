@@ -120,3 +120,12 @@ page {
   justify-content: center;
   align-items: center;
 }
+.cart-no-good {
+  width: 100%;
+  height: 100%;
+}
+.cart-no-good image {
+  width: 500rpx;
+  height: 500rpx;
+  margin-top: 30%;
+}

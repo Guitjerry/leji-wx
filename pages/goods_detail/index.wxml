@@ -32,6 +32,58 @@
   </view>
 </view>
 
+<!--屏幕背景变暗的背景  -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<!--弹出框  -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+  <view class="sku-body">
+    <view class="grid header">
+      <view class="left">
+        <image src="{{goodsObj.pics[0]}}"></image>
+      </view>
+      <view class="right">
+        <view class="price">
+          <text>￥</text>
+          <text>{{goodsObj.goods_price}}</text>
+        </view>
+        <view class="selected grid" wx:if="{{chooseProduct.attrName}}">
+          <text>已选</text>
+          <text>{{chooseProduct.attrName}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="model">
+      <view class="header">型号</view>
+      <view class="grid body">
+        <text wx:for="{{productList}}" wx:key="{{id}}" bindtap="chooseOne"
+              data-item="{{item}}" class="{{chooseProduct.id === item.id? 'product-choosed':''}}">{{item.attrName}}</text>
+      </view>
+    </view>
+    <view class="nums grid grid-between">
+      <view class="header">数量</view>
+      <view class="body grid grid-middle grid-center">
+        <view class="nums-left" wx:if="{{goodCount>0}}" bindtap="goodJian">
+          <text>-</text>
+        </view>
+        <view class="nums-left" wx:else>
+          <text class='un-selected'>-</text>
+        </view>
+        <view class="nums-middle">
+          <input value="{{goodCount}}" type="number"></input>
+        </view>
+        <view class="nums-right" bindtap="goodAdd">
+          <text>+</text>
+        </view>
+      </view>
+    </view>
+    <view class="bottom grid grid-center">
+      <button class="btn_confirm">确认</button>
+    </view>
+  </view>
+</view>
+
+
+
 <view class="btm_tool">
   <view class="tool_item">
     <view class="iconfont icon-kefu"></view>
@@ -45,12 +97,16 @@
   </view>
   <navigator open-type="switchTab" url="/pages/cart/index" class="tool_item">
     <view class="iconfont icon-gouwuche"></view>
-    <view>购物车</view>
+    <view class="cart-main">
+      <text>进货单</text>
+      <text wx:if="{{cartCount>0}}" class="icon-gouwuche-count">{{cartCount}}</text>
+      <text wx:else></text>
+    </view>
   </navigator>
   <view class="tool_item btn_cart " bindtap="handleCartAdd">
-  加入购物车
+  加入进货单
   </view>
-  <view class="tool_item btn_buy">
-    立即购买
-  </view>
+<!--  <view class="tool_item btn_buy" bindtap="buyGood">-->
+<!--    立即购买-->
+<!--  </view>-->
 </view>

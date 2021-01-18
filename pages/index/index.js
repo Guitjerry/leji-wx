@@ -13,6 +13,17 @@ Page({
     //品牌
     newBrandList:[],
     RecommendProductList:[],
+    user: {},
+    flag:true,
+  },
+  showMask: function () {
+    this.setData({ flag: false })
+  },
+  closeMask: function () {
+    this.setData({ flag: true })
+  },
+  onShow() {
+    this.getUserInfo();
   },
   // 页面开始加载 就会触发
   onLoad: function (options) {
@@ -29,10 +40,20 @@ Page({
     this.getSwiperList();
     this.getCateList();
     this.getFloorList();
-    this.getNewGoodList();
     this.getBrandList();
+    this.getNewGoodList();
     this.getRecommendProduct();
+    this.getUserInfo();
 
+  },
+  getUserInfo() {
+    const  _this = this
+    setTimeout(function () {
+      const user = wx.getStorageSync('USER')
+      _this.setData({
+        user: user
+      })
+    },1000)
   },
   // 获取轮播图数据
   getSwiperList(){
@@ -98,5 +119,48 @@ Page({
   listByBrandId(e) {
     const id = e.currentTarget.dataset.id
     wx.redirectTo({ url: '/pages/goods_list/index?brandId=' + id })
+  },
+  goToDetail(e) {
+    const user =wx.getStorageSync('USER')
+    this.showMask()
+    return
+    // if(user.mobile) {
+    //   this.showMask()
+    //   return
+    // }
+    const type = e.currentTarget.dataset.type
+    wx.redirectTo({ url: '/pages/goods_list/index?type=' + type})
+  },
+  getPhoneNumber (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    //------执行Login---------
+    wx.login({
+      success: res => {
+        console.log('code转换', res.code);
+
+        //用code传给服务器调换session_key
+        const  queryData = {
+          code: res.code,
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv
+        }
+        if (e.detail.errMsg == 'getPhoneNumber:user deny') { //用户点击拒绝
+          console.info('用户点击拒绝')
+        } else { //允许授权执行跳转
+          //获取用户信息
+          request({url:"/session/wetchatGetPhone",data:queryData}).then(result => {
+            wx.setStorageSync('USER', result.data)
+            this.setData({
+              user: result.data
+            })
+          })
+          this.closeMask()
+        }
+
+
+      }
+    });
   }
 })

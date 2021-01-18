@@ -50,7 +50,7 @@ Page({
   QueryParams:{
     query:"",
     cid:"",
-    pagenum:1,
+    pageNum:1,
     pagesize:10
   },
   // 总页数
@@ -62,6 +62,7 @@ Page({
     this.QueryParams.productCategoryId=options.cid||"";
     this.QueryParams.brandId=options.brandId||"";
     this.QueryParams.query=options.query||"";
+    this.QueryParams.type=options.type||"";
     this.getGoodsList();
   },
 
@@ -99,7 +100,7 @@ Page({
   // 页面上滑 滚动条触底事件
   onReachBottom(){
   //  1 判断还有没有下一页数据
-    if(this.QueryParams.pagenum>=this.totalPages){
+    if(this.QueryParams.pageNum>=this.totalPages){
       // 没有下一页数据
       //  console.log('%c'+"没有下一页数据","color:red;font-size:100px;background-image:linear-gradient(to right,#0094ff,pink)");
       wx.showToast({ title: '没有下一页数据' });
@@ -107,7 +108,7 @@ Page({
     }else{
       // 还有下一页数据
       //  console.log('%c'+"有下一页数据","color:red;font-size:100px;background-image:linear-gradient(to right,#0094ff,pink)");
-      this.QueryParams.pagenum++;
+      this.QueryParams.pageNum++;
       this.getGoodsList();
     }
   },
@@ -118,7 +119,7 @@ Page({
       goodsList:[]
     })
     // 2 重置页码
-    this.QueryParams.pagenum=1;
+    this.QueryParams.pageNum=this.QueryParams.pageNum+1;
     // 3 发送请求
     this.getGoodsList();
   }

@@ -16,6 +16,8 @@ Page({
     categoryId: 0,
     cartCount:0,
     cartList:[],
+    user:{},
+    flag: true,
   },
   // 接口的返回数据
   Cates: [],
@@ -72,6 +74,13 @@ Page({
     if(this.data.categoryId) {
       this.listGoodByCategoryId(this.data.categoryId)
     }
+    this.getUserInfo()
+  },
+  getUserInfo() {
+    const user = wx.getStorageSync('USER')
+    this.setData({
+      user: user
+    })
   },
   // 获取分类数据
   async getCates() {
@@ -232,7 +241,11 @@ Page({
     }
 
     let newGood = {}
-    let filterCartList = cartList.filter(cart => cart.id!== goodId)
+    let filterCartList = []
+    if(cartList) {
+      filterCartList = cartList.filter(cart => cart.id!== goodId)
+    }
+
     if(cartMap.has(goodId)) {
       newGood = cartMap.get(goodId)
       newGood.count = newGood.count + 1

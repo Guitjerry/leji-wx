@@ -1,7 +1,8 @@
 /* pages/goods_list/index.wxss */
 .first_tab .goods_item {
   display: flex;
-  margin: 10rpx;
+  margin: 20rpx 10rpx;
+  border-bottom: 1rpx solid #e6e6e6;
 }
 .first_tab .goods_item .goods_img_wrap {
   flex: 2;

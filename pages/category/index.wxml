@@ -32,8 +32,8 @@
                     <view class="good_description">{{item.subTitle}}</view>
                     <view class="grid good_price">
                         <text class="icon">促</text>
-                        <text class="sale_price_pre">{{item.price}}</text>
-                        <text class="sale_price_last">.00元/箱</text>
+                        <text class="sale_price_pre">{{user.phone || item.isShow===1? '￥' + item.price: '￥' + '?'}}</text>
+                        <text class="sale_price_last" wx:if="{{item.unit}}">{{'/' + item.unit}}</text>
                     </view>
                     <view class="grid grid-right add_btn">
                         <text bindtap="{{item.count ==0?'':'goodSubtraction'}}" data-index="{{index}}">-</text>
@@ -50,4 +50,14 @@
             </view>
         </view>
     </view>
+    <view class="mask" hidden="{{flag}}">
+        <view class="maskContent" catchtouchmove="true">
+            <view class="header grid grid-center">易记授权</view>
+            <button class="contentBtn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+        </view>
+        <view class="closeImg" bindtap="closeMask">
+            <image  class="closeImg_image" src="/common/icons/close.png"></image>
+        </view>
+    </view>
+
 </view>

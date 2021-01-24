@@ -51,6 +51,21 @@ let APIS = {
     })
   },
 
+  /**
+   * 生成订单
+   */
+  createOrder: (data) => {
+    debugger
+    return ApiCreater({
+      url: '/Order/saveOrder',
+      header: {
+        'Authorization': "Bearer " + wx.getStorageSync("USER").token
+      },
+      method: 'POST',
+      data
+    })
+  },
+
 };
 
 module.exports = APIS;

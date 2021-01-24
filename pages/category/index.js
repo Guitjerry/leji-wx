@@ -197,6 +197,11 @@ Page({
     })
   },
   goodSubtraction(e) {
+    const user =wx.getStorageSync('USER')
+    if(!user.phone) {
+      this.showMask()
+      return
+    }
     //设置商品
     var index = e.currentTarget.dataset.index;
     var newGoodList = this.data.goodList;
@@ -220,7 +225,18 @@ Page({
     wx.setStorageSync('cart', filterCartList)
     this.onShow()
   },
+  showMask: function () {
+    this.setData({ flag: false })
+  },
+  closeMask: function () {
+    this.setData({ flag: true })
+  },
   goodAdd(e) {
+    const user =wx.getStorageSync('USER')
+    if(!user.phone) {
+      this.showMask()
+      return
+    }
     var index = e.currentTarget.dataset.index;
     var newGoodList = this.data.goodList;
     var good = newGoodList[index];
@@ -266,6 +282,38 @@ Page({
     }
     wx.setStorageSync('cart', filterCartList)
     this.onShow()
+  },
+  getPhoneNumber (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    //------执行Login---------
+    wx.login({
+      success: res => {
+        console.log('code转换', res.code);
+
+        //用code传给服务器调换session_key
+        const  queryData = {
+          code: res.code,
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv
+        }
+        if (e.detail.errMsg == 'getPhoneNumber:user deny') { //用户点击拒绝
+          console.info('用户点击拒绝')
+        } else { //允许授权执行跳转
+          //获取用户信息
+          request({url:"/session/wetchatGetPhone",data:queryData}).then(result => {
+            wx.setStorageSync('USER', result.data)
+            this.setData({
+              user: result.data
+            })
+          })
+          this.closeMask()
+        }
+
+
+      }
+    });
   },
 
   toCart() {

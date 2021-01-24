@@ -67,7 +67,7 @@
         </view>
 
         <view class="grid  body">
-            <view wx:for="{{newGoodList}}" wx:key="id" wx:if="{{index<5}}" class="single">
+            <view wx:for="{{newGoodList}}" wx:key="id" wx:if="{{index<5}}" class="single" bindtap="goToGoodDetail" data-id="{{item.id}}">
                 <view class="image">
                     <image src="{{item.pic}}"></image>
                 </view>
@@ -77,7 +77,7 @@
                 <view class="info">
                     {{user.phone || item.isShow===1? '￥' + item.originalPrice: '￥' + '?'}}元
                 </view>
-                <view class="desc" wx:if="{{user.phone==='' && item.isShow===0}}">窥探优惠</view>
+                <view class="desc" wx:if="{{user.phone==='' || user.phone===null && item.isShow===0}}">窥探优惠</view>
             </view>
         </view>
     </view>
@@ -93,7 +93,7 @@
         </view>
 
         <view class="grid body">
-            <view wx:for="{{RecommendProductList}}" wx:key="id" wx:if="{{index<5}}" class="single">
+            <view wx:for="{{RecommendProductList}}" wx:key="id" wx:if="{{index<5}}" class="single" data-id="{{item.id}}" bindtap="goToGoodDetail">
                 <view class="image">
                     <image src="{{item.pic}}"></image>
                 </view>

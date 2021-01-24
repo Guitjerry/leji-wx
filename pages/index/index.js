@@ -122,12 +122,10 @@ Page({
   },
   goToDetail(e) {
     const user =wx.getStorageSync('USER')
-    this.showMask()
-    return
-    // if(user.mobile) {
-    //   this.showMask()
-    //   return
-    // }
+    if(!user.phone) {
+      this.showMask()
+      return
+    }
     const type = e.currentTarget.dataset.type
     wx.redirectTo({ url: '/pages/goods_list/index?type=' + type})
   },
@@ -162,5 +160,9 @@ Page({
 
       }
     });
+  },
+  goToGoodDetail(e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + e.currentTarget.dataset.id})
   }
 })

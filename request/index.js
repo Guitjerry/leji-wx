@@ -20,7 +20,7 @@ export const request=(params)=>{
     
 
   // 定义公共的url
-  const baseUrl="http://192.168.56.104:8201/mall-admin/wxApi";
+  const baseUrl="http://localhost:8201/mall-admin/wxApi";
   return new Promise((resolve,reject)=>{
     wx.request({
      ...params,

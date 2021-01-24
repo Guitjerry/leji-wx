@@ -235,29 +235,11 @@
 /* 设置关闭按钮图片的位置 */
 .closeImg {
   position: fixed;
-  top: 32%;
+  top: 35%;
   right: 66rpx;
 }
 /* 设置关闭按钮宽高 */
 .closeImg_image {
   width: 50rpx;
   height: 50rpx;
-}
-.btn{
-  width: 80%;
-  margin: 20rpx auto;
-  background: #ff6600;
-  color: #fff;
-  line-height: 60rpx;
-  font-size: 32rpx;
-  text-align: center;
-  border-radius: 3px;
-}
-.input{
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 28rpx;
-  padding: 0 10rpx;
-  margin: 20rpx 0;
-  line-height: 60rpx;
 }

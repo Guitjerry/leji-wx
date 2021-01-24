@@ -165,4 +165,49 @@ page {
   color: #929292;
   padding-left: 28rpx;
 }
-
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* 设置遮罩内容样式 */
+.maskContent {
+  width: 76%;
+  height: 300rpx;
+  background: #fff;
+  padding: 10rpx;
+  border-radius: 20rpx;
+}
+.maskContent .header {
+  font-size: 24prx;
+  margin: 10rpx;
+  padding: 20rpx;
+  border-bottom: solid #f6f6f6;
+}
+.maskContent .contentBtn {
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 356rpx;
+  font-size: 28rpx;
+  color: #fff;
+  margin-top: 50rpx;
+  background-color: #eb4450;
+}
+/* 设置关闭按钮图片的位置 */
+.closeImg {
+  position: fixed;
+  top: 35%;
+  right: 66rpx;
+}
+/* 设置关闭按钮宽高 */
+.closeImg_image {
+  width: 50rpx;
+  height: 50rpx;
+}

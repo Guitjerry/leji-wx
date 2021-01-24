@@ -19,12 +19,13 @@
   7 删除后的购物车数据 填充回缓存
   8 再跳转页面 
  */
-import { getSetting, chooseAddress, openSetting, showModal, showToast, requestPayment } from "../../utils/asyncWx.js";
-import regeneratorRuntime from '../../lib/runtime/runtime';
-import { request } from "../../request/index.js";
+const App = getApp()
+const { API } = App.services;
 Page({
   data: {
-    address: {},
+    address: {
+
+    },
     cart: [],
     totalPrice: 0,
     totalNum: 0
@@ -51,9 +52,40 @@ Page({
       address
     });
   },
-  // 点击 支付 
-  async handleOrderPay() {
+  createOrder(){
+    const user = wx.getStorageSync('USER')
+    const data = {addresses:this.data.address, carts:this.data.cart, memberId: user.uid}
+    API.createOrder(data)
 
+  },
+  //  下订单
+  handleOrderPay() {
+    //组合参数，购物车
+    console.info('地址' + JSON.stringify(this.data.address))
+    console.info('购物车' + JSON.stringify(this.data.cart))
+    let address = {
+      addressName: '',
+      name: '',
+      phone: '',
+      province: '',
+      city: '',
+      region: '',
+      detailAddress: ''
+    }
+    address.name = this.data.address.userName
+    address.phone = this.data.address.telNumber
+    address.province = this.data.address.provinceName
+    address.city = this.data.address.cityName
+    address.region = this.data.address.countyName
+    address.detailAddress = this.data.address.detailAddress
+    address.addressName = this.data.address.all
+    const oldAddress = this.data.address
+    Object.assign(address, oldAddress)
+
+   this.setData({
+     address
+   })
+    this.createOrder()
     // try {
     //
     //   // 1 判断缓存中有没有token

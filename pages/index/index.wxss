@@ -10,14 +10,24 @@
   width: 100%;
 }
 .index_cate {
-  display: flex;
+  width: 98%;
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 20rpx 10rpx;
+
 }
 .index_cate .goodCategory {
   padding: 20rpx;
-  flex: 1;
+  width: 25%;
 }
 .index_cate .goodCategory image {
-  width: 100%;
+  width: 100rpx;
+  height: 100rpx;
+}
+.index_cate .goodCategory .desc {
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  font-weight: bold;
 }
 /*新品推荐*/
 .sale_recommend {

@@ -32,7 +32,7 @@
     <!-- 轮播图 结束 -->
 
     <!-- 导航 开始 -->
-    <view class="index_cate">
+    <view class="index_cate grid">
         <view class="goodCategory"
                 wx:for="{{catesList}}"
                 wx:key="name"
@@ -40,12 +40,10 @@
                 data-id="{{item.id}}"
                 open-type="switchTab"
         >
-            <view class="catory_list">
-                <view class="grid grid-center">
-                    <image mode="widthFix" src="{{item.icon}}"></image>
-                </view>
-                <view class="grid grid-center">{{item.name}}</view>
-            </view>
+          <view class="grid grid-center">
+            <image mode="widthFix" src="{{item.icon}}"></image>
+          </view>
+          <view class="grid grid-center desc">{{item.name}}</view>
         </view>
     </view>
     <!-- 导航 结束 -->

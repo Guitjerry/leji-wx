@@ -65,11 +65,9 @@ Page({
   onShow() {
     const categoryId=getApp().globalData.categoryId||"";
     if(categoryId) {
-      this.setData({
-        categoryId
-      })
-      this.leftMenuList
-
+      // this.setData({
+      //   categoryId
+      // })
     }
     if(this.data.categoryId) {
       this.listGoodByCategoryId(this.data.categoryId)

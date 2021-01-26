@@ -112,9 +112,11 @@ Page({
   },
   toGoodList(e) {
     const id = e.currentTarget.dataset.id
-    // let app = getApp();
-    // app.globalData.categoryId = id
-    wx.redirectTo({ url: '/pages/goods_list/index?cid=' + id })
+    let app = getApp();
+    app.globalData.categoryId = id
+    wx.switchTab({
+      url: '/pages/category/index'
+    });
   },
   listByBrandId(e) {
     const id = e.currentTarget.dataset.id

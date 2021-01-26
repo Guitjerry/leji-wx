@@ -3,7 +3,15 @@
   <button bindtap="handleCancel" hidden="{{!isFocus}}">取消</button>
 </view>
 <view class="search_content">
-  <navigator url="/pages/goods_detail/index?goods_id={{item.goods_id}}" class="search_item" wx:for="{{goods}}" wx:key="goods_id">
-    {{item.goods_name}}
+  <navigator url="/pages/goods_detail/index?goods_id={{item.id}}" class="search_item" wx:for="{{goods}}" wx:key="goods_id">
+    <!-- 左侧 图片容器 -->
+    <view class="goods_img_wrap">
+      <image mode="widthFix" src="{{item.pic?item.pic:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
+    </view>
+    <!-- 右侧 商品容器 -->
+    <view class="goods_info_wrap">
+      <view class="goods_name">{{item.name}}</view>
+      <view class="goods_price">￥{{item.price}}</view>
+    </view>
   </navigator>
 </view> 

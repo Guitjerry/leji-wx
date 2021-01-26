@@ -44,11 +44,12 @@ Page({
   },
   // 发送请求获取搜索建议 数据
   async qsearch(query){
-    const res=await request({url:"/goods/qsearch",data:{query}});
-    console.log(res);
-    this.setData({
-      goods:res
-    })
+    await request({url:"/product/list",data:{keyword:query}}) .then(result => {
+      console.log(result);
+      this.setData({
+        goods:result.data.list
+      })
+    });
   },
   // 点击 取消按钮
   handleCancel(){

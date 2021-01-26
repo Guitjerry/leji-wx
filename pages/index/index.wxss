@@ -192,7 +192,7 @@
   color: #fff;
 }
 .brand_zone .body .single{
-  padding: 10rpx;
+  padding: 7rpx;
 }
 .brand_zone .body image {
   width: 155rpx;

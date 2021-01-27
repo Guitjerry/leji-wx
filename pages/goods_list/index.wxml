@@ -1,24 +1,27 @@
 <SearchInput></SearchInput>
+<AuthPhone hidderAuthPhone="{{hidderAuthPhone}}" bind:getPhoneNumber="getPhoneNumber"></AuthPhone>
 <!-- 监听自定义事件 -->
 <Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange" >
-  
+
   <block wx:if="{{tabs[0].isActive}}">
     <view class="first_tab">
-        <navigator class="goods_item"
+        <view class="goods_item"
         wx:for="{{goodsList}}"
         wx:key="goods_id"
-        url="/pages/goods_detail/index?goods_id={{item.id}}"
+        bindtap="toGoodDetail"
+        id="{{item.id}}"
+        shows ="{{item.isShow}}"
         >
             <!-- 左侧 图片容器 -->
             <view class="goods_img_wrap">
               <image mode="widthFix" src="{{item.pic?item.pic:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
             </view>
             <!-- 右侧 商品容器 -->
-            <view class="goods_info_wrap">
+            <view class="goods_info_wrap" >
               <view class="goods_name">{{item.name}}</view>
-              <view class="goods_price">￥{{item.price}}</view>
+              <view class="goods_price">￥{{user.phone || item.isShow===1? item.price : '?'}}</view>
             </view>
-          </navigator>
+          </view>
     </view>
   </block>
   <block wx:elif="{{tabs[1].isActive}}">1</block>

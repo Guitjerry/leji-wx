@@ -17,14 +17,14 @@ Page({
     cartCount:0,
     cartList:[],
     user:{},
-    flag: true,
+    hidderAuthPhone: true,
   },
   // 接口的返回数据
   Cates: [],
   onLoad: function (options) {
-    /* 
+    /*
     0 web中的本地存储和 小程序中的本地存储的区别
-      1 写代码的方式不一样了 
+      1 写代码的方式不一样了
         web: localStorage.setItem("key","value") localStorage.getItem("key")
     小程序中: wx.setStorageSync("key", "value"); wx.getStorageSync("key");
       2:存的时候 有没有做类型转换
@@ -32,7 +32,7 @@ Page({
       小程序: 不存在 类型转换的这个操作 存什么类似的数据进去，获取的时候就是什么类型
     1 先判断一下本地存储中有没有旧的数据
       {time:Date.now(),data:[...]}
-    2 没有旧数据 直接发送新请求 
+    2 没有旧数据 直接发送新请求
     3 有旧的数据 同时 旧的数据也没有过期 就使用 本地存储中的旧数据即可
      */
     //  1 获取本地存储中的数据  (小程序中也是存在本地存储 技术)
@@ -224,10 +224,9 @@ Page({
     this.onShow()
   },
   showMask: function () {
-    this.setData({ flag: false })
-  },
-  closeMask: function () {
-    this.setData({ flag: true })
+    this.setData({
+      hidderAuthPhone: false,
+    })
   },
   goodAdd(e) {
     const user =wx.getStorageSync('USER')
@@ -282,36 +281,10 @@ Page({
     this.onShow()
   },
   getPhoneNumber (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    //------执行Login---------
-    wx.login({
-      success: res => {
-        console.log('code转换', res.code);
-
-        //用code传给服务器调换session_key
-        const  queryData = {
-          code: res.code,
-          encryptedData: e.detail.encryptedData,
-          iv: e.detail.iv
-        }
-        if (e.detail.errMsg == 'getPhoneNumber:user deny') { //用户点击拒绝
-          console.info('用户点击拒绝')
-        } else { //允许授权执行跳转
-          //获取用户信息
-          request({url:"/session/wetchatGetPhone",data:queryData}).then(result => {
-            wx.setStorageSync('USER', result.data)
-            this.setData({
-              user: result.data
-            })
-          })
-          this.closeMask()
-        }
-
-
-      }
-    });
+    const user = wx.getStorageSync('USER')
+    this.setData({
+      user: user
+    })
   },
 
   toCart() {

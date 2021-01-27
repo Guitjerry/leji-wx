@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "SearchInput":"../../components/SearchInput/SearchInput"
+    "SearchInput":"../../components/SearchInput/SearchInput",
+    "AuthPhone":"../../components/authPhone/authPhone"
   },
   "navigationBarTitleText": "商品分类"
 }

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "SearchInput":"../../components/SearchInput/SearchInput",
+    "AuthPhone":"../../components/authPhone/authPhone",
     "Tabs":"../../components/Tabs/Tabs"
 
   },

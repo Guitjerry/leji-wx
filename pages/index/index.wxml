@@ -1,6 +1,7 @@
 <view class="pyg_index">
     <!-- 搜索框 开始 -->
     <SearchInput></SearchInput>
+    <AuthPhone hidderAuthPhone="{{hidderAuthPhone}}" bind:getPhoneNumber="getPhoneNumber"></AuthPhone>
     <!-- 搜索框 结束 -->
     <!-- 轮播图 开始 -->
     <view class="index_swiper">
@@ -65,18 +66,19 @@
         </view>
 
         <view class="grid  body">
-            <view wx:for="{{newGoodList}}" wx:key="id" wx:if="{{index<5}}" class="single" bindtap="goToGoodDetail" data-id="{{item.id}}">
-                <view class="image">
-                    <image src="{{item.pic}}"></image>
-                </view>
-                <view class="title">
-                    {{item.productName}}
-                </view>
-                <view class="info">
-                    {{user.phone || item.isShow===1? '￥' + item.originalPrice: '￥' + '?'}}元
-                </view>
-                <view class="desc" wx:if="{{user.phone==='' || user.phone===null && item.isShow===0}}">窥探优惠</view>
+          <view wx:for="{{newGoodList}}" wx:key="id" wx:if="{{index<5}}" class="single" bindtap="goToGoodDetail"
+                data-id="{{item.id}}" data-show="{{item.isShow}}">
+            <view class="image">
+              <image src="{{item.pic}}"></image>
             </view>
+            <view class="title">
+              {{item.productName}}
+            </view>
+            <view class="info">
+              {{user.phone || item.isShow===1? '￥' + item.originalPrice: '￥' + '?'}}元
+            </view>
+            <view class="desc" wx:if="{{user.phone==='' || user.phone===null && item.isShow===0}}">窥探优惠</view>
+          </view>
         </view>
     </view>
     <!--人气推荐-->
@@ -123,15 +125,6 @@
                     {{item.recommend || '爆品推荐'}}
                 </view>
             </view>
-        </view>
-    </view>
-    <view class="mask" hidden="{{flag}}">
-        <view class="maskContent" catchtouchmove="true">
-            <view class="header grid grid-center">易记授权</view>
-            <button class="contentBtn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
-        </view>
-        <view class="closeImg" bindtap="closeMask">
-            <image  class="closeImg_image" src="/common/icons/close.png"></image>
         </view>
     </view>
 </view>

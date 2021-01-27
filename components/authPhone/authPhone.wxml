@@ -1,0 +1,9 @@
+<view class="mask" hidden="{{hidderAuthPhone}}">
+  <view class="maskContent" catchtouchmove="true">
+    <view class="header grid grid-center">易记授权</view>
+    <button class="contentBtn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+  </view>
+  <view class="closeImg" bindtap="closeMask">
+    <image  class="closeImg_image" src="/common/icons/close.png"></image>
+  </view>
+</view>

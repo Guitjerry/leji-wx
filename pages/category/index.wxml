@@ -1,5 +1,6 @@
 <view class="cates">
     <SearchInput></SearchInput>
+    <AuthPhone hidderAuthPhone="{{hidderAuthPhone}}" bind:getPhoneNumber="getPhoneNumber"></AuthPhone>
     <view class="cates_container">
         <!-- 左侧菜单 -->
         <scroll-view scroll-y class="left_menu" scroll-into-view="{{'item-' + categoryId}}">
@@ -48,15 +49,6 @@
                 <image class="icon" src="../../icons/cart_selected.png"></image>
                 <text class="grid grid-middle grid-center" wx:if="{{cartCount>0}}">{{cartCount}}</text>
             </view>
-        </view>
-    </view>
-    <view class="mask" hidden="{{flag}}">
-        <view class="maskContent" catchtouchmove="true">
-            <view class="header grid grid-center">易记授权</view>
-            <button class="contentBtn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
-        </view>
-        <view class="closeImg" bindtap="closeMask">
-            <image  class="closeImg_image" src="/common/icons/close.png"></image>
         </view>
     </view>
 

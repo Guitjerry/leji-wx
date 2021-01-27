@@ -4,6 +4,7 @@ Page({
   data: {
     // 轮播图数组
     swiperList: [],
+    hidderAuthPhone: true,
     // 导航 数组
     catesList:[],
     // 楼层数据
@@ -14,20 +15,18 @@ Page({
     newBrandList:[],
     RecommendProductList:[],
     user: {},
-    flag:true,
   },
   showMask: function () {
-    this.setData({ flag: false })
-  },
-  closeMask: function () {
-    this.setData({ flag: true })
+    this.setData({
+      hidderAuthPhone: false,
+    })
   },
   onShow() {
     this.getUserInfo();
   },
   // 页面开始加载 就会触发
   onLoad: function (options) {
-    // 1 发送异步请求获取轮播图数据  优化的手段可以通过es6的 promise来解决这个问题 
+    // 1 发送异步请求获取轮播图数据  优化的手段可以通过es6的 promise来解决这个问题
     // wx.request({
     //   url: 'https://api.zbztb.cn/api/public/v1/home/swiperdata',
     //   success: (result) => {
@@ -36,7 +35,7 @@ Page({
     //     })
     //   }
     // });
-    
+
     this.getSwiperList();
     this.getCateList();
     this.getFloorList();
@@ -132,39 +131,19 @@ Page({
     wx.redirectTo({ url: '/pages/goods_list/index?type=' + type})
   },
   getPhoneNumber (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    //------执行Login---------
-    wx.login({
-      success: res => {
-        console.log('code转换', res.code);
-
-        //用code传给服务器调换session_key
-        const  queryData = {
-          code: res.code,
-          encryptedData: e.detail.encryptedData,
-          iv: e.detail.iv
-        }
-        if (e.detail.errMsg == 'getPhoneNumber:user deny') { //用户点击拒绝
-          console.info('用户点击拒绝')
-        } else { //允许授权执行跳转
-          //获取用户信息
-          request({url:"/session/wetchatGetPhone",data:queryData}).then(result => {
-            wx.setStorageSync('USER', result.data)
-            this.setData({
-              user: result.data
-            })
-          })
-          this.closeMask()
-        }
-
-
-      }
-    });
+    const user = wx.getStorageSync('USER')
+    this.setData({
+      user: user
+    })
   },
   goToGoodDetail(e) {
-    console.log(e.currentTarget.dataset.id)
-    wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + e.currentTarget.dataset.id})
+    const id = e.currentTarget.dataset.id
+    const isShow = e.currentTarget.dataset.show
+    if(this.data.user.phone || isShow ===1) {
+      wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
+    }else {
+      this.showMask()
+    }
+
   }
 })

@@ -1,35 +1,3 @@
-/* pages/goods_list/index.wxss */
-.first_tab .goods_item {
-  display: flex;
-  margin: 20rpx 10rpx;
-  border-bottom: 1rpx solid #e6e6e6;
-}
-.first_tab .goods_item .goods_img_wrap {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.first_tab .goods_item .goods_img_wrap image {
-  width: 70%;
-}
-.first_tab .goods_item .goods_info_wrap {
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.first_tab .goods_item .goods_info_wrap .goods_name {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-.first_tab .goods_item .goods_info_wrap .goods_price {
-  color: var(--themeColor);
-  font-size: 32rpx;
-}
-
 .mask {
   position: fixed;
   left: 0;
@@ -41,6 +9,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 9999;
 }
 /* 设置遮罩内容样式 */
 .maskContent {

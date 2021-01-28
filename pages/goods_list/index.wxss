@@ -17,7 +17,49 @@
   flex: 3;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+}
+.first_tab .goods_item .goods_info_wrap .sale_youhui{
+  margin-top: 20rpx;
+  font-size: 24rpx;
+}
+.first_tab .goods_item .goods_info_wrap .sale_youhui .info {
+  margin-left: 20rpx;
+  font-weight: bold;
+}
+.first_tab .goods_item .goods_info_wrap .sale_youhui .zhe {
+   color: #fff;
+   background: #b9b268;
+   padding: 8rpx;
+   text-align: center;
+   font-weight: bold;
+   font-size: 20rpx;
+   border-radius: 5rpx;
+ }
+.first_tab .goods_item .goods_info_wrap .sale_youhui .man {
+   color: #fff;
+   background: #b92831;
+   padding: 8rpx;
+   text-align: center;
+   font-weight: bold;
+   font-size: 20rpx;
+   border-radius: 5rpx;
+ }
+.first_tab .goods_item .goods_info_wrap .sale_youhui .quan {
+  color: #fff;
+  background: #44b9af;
+  font-size: 20rpx;
+  padding: 8rpx;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5rpx;
+}
+.first_tab .goods_item .goods_info_wrap .sale_youhui .send {
+  margin-left: 20rpx;
+  background: #ff4633;
+  padding: 6rpx;
+  border-radius: 7rpx;
+  font-size: 20rpx;
+  color: #fff;
 }
 .first_tab .goods_item .goods_info_wrap .goods_name {
   display: -webkit-box;
@@ -28,6 +70,18 @@
 .first_tab .goods_item .goods_info_wrap .goods_price {
   color: var(--themeColor);
   font-size: 32rpx;
+  margin-top: 20rpx;
+}
+.first_tab .goods_item .goods_info_wrap .goods_price text:first-child {
+  font-weight: bold;
+}
+.first_tab .goods_item .goods_info_wrap .goods_price text:last-child {
+  color: #666;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  text-decoration: line-through;
+  margin-right: 10rpx;
+  margin-top: 7rpx;
 }
 
 .mask {

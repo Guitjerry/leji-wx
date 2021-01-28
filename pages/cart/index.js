@@ -1,23 +1,23 @@
-/* 
+/*
 1 获取用户的收货地址
   1 绑定点击事件
   2 调用小程序内置 api  获取用户的收货地址  wx.chooseAddress
 
   2 获取 用户 对小程序 所授予 获取地址的  权限 状态 scope
-    1 假设 用户 点击获取收货地址的提示框 确定  authSetting scope.address 
+    1 假设 用户 点击获取收货地址的提示框 确定  authSetting scope.address
       scope 值 true 直接调用 获取收货地址
-    2 假设 用户 从来没有调用过 收货地址的api 
+    2 假设 用户 从来没有调用过 收货地址的api
       scope undefined 直接调用 获取收货地址
-    3 假设 用户 点击获取收货地址的提示框 取消   
-      scope 值 false 
-      1 诱导用户 自己 打开 授权设置页面(wx.openSetting) 当用户重新给与 获取地址权限的时候 
+    3 假设 用户 点击获取收货地址的提示框 取消
+      scope 值 false
+      1 诱导用户 自己 打开 授权设置页面(wx.openSetting) 当用户重新给与 获取地址权限的时候
       2 获取收货地址
-    4 把获取到的收货地址 存入到 本地存储中 
+    4 把获取到的收货地址 存入到 本地存储中
 2 页面加载完毕
-  0 onLoad  onShow 
+  0 onLoad  onShow
   1 获取本地存储中的地址数据
   2 把数据 设置给data中的一个变量
-3 onShow 
+3 onShow
   0 回到了商品详情页面 第一次添加商品的时候 手动添加了属性
     1 num=1;
     2 checked=true;
@@ -45,9 +45,9 @@
   2 获取 data中的全选变量 allChecked
   3 直接取反 allChecked=!allChecked
   4 遍历购物车数组 让里面 商品 选中状态跟随  allChecked 改变而改变
-  5 把购物车数组 和 allChecked 重新设置回data 把购物车重新设置回 缓存中 
+  5 把购物车数组 和 allChecked 重新设置回data 把购物车重新设置回 缓存中
 8 商品数量的编辑
-  1 "+" "-" 按钮 绑定同一个点击事件 区分的关键 自定义属性 
+  1 "+" "-" 按钮 绑定同一个点击事件 区分的关键 自定义属性
     1 “+” "+1"
     2 "-" "-1"
   2 传递被点击的商品id goods_id
@@ -55,13 +55,13 @@
   4 当 购物车的数量 =1 同时 用户 点击 "-"
     弹窗提示(showModal) 询问用户 是否要删除
     1 确定 直接执行删除
-    2 取消  什么都不做 
+    2 取消  什么都不做
   4 直接修改商品对象的数量 num
   5 把cart数组 重新设置回 缓存中 和data中 this.setCart
 9 点击结算
   1 判断有没有收货地址信息
   2 判断用户有没有选购商品
-  3 经过以上的验证 跳转到 支付页面！ 
+  3 经过以上的验证 跳转到 支付页面！
  */
 
 import { getSetting, chooseAddress, openSetting, showModal ,showToast} from "../../utils/asyncWx.js";
@@ -108,7 +108,7 @@ Page({
   handeItemChange(e) {
     // 1 获取被修改的商品的id
     const goods_id = e.currentTarget.dataset.id;
-    // 2 获取购物车数组 
+    // 2 获取购物车数组
     let { cart } = this.data;
     // 3 找到被修改的商品对象
     let index = cart.findIndex(v => v.id === goods_id);
@@ -153,7 +153,7 @@ Page({
   },
   // 商品数量的编辑功能
   async handleItemNumEdit(e) {
-    // 1 获取传递过来的参数 
+    // 1 获取传递过来的参数
     const { operation, id } = e.currentTarget.dataset;
     // 2 获取购物车数组
     let { cart } = this.data;
@@ -174,7 +174,7 @@ Page({
       this.setCart(cart);
     }
   },
-  // 点击 结算 
+  // 点击 结算
   async handlePay(){
     // 1 判断收货地址
     const {address,totalNum}=this.data;
@@ -191,6 +191,25 @@ Page({
     wx.navigateTo({
       url: '/pages/pay/index'
     });
-      
+
+  },
+  changeGoodCount(e) {
+    const id = e.currentTarget.dataset.id
+    const value = e.detail.value
+    const cart = this.data.cart
+    if(cart && cart.length>0) {
+      cart.forEach(goodCart=>{
+        if(goodCart.id === id) {
+          goodCart.count = Number(value)
+        }
+      })
+    }
+    this.setData({
+      cart
+    })
+    wx.setStorageSync("cart", cart);
+    if(this.data.totalNum) {
+      this.setCart(cart)
+    }
   }
 })

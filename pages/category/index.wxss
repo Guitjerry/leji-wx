@@ -49,6 +49,7 @@ page {
   padding: 10rpx;
   font-size: 26rpx;
   margin-bottom: 10px;
+  margin-left: 20rpx;
 }
 
 .cates .cates_container .right_content .goods_body .left {

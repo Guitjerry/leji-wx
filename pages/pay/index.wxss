@@ -58,7 +58,7 @@ page {
   display: flex;
 }
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .cart_num_tool .goods_num {
-  width: 55rpx;
+  width: 90rpx;
   height: 55rpx;
   display: flex;
   justify-content: center;

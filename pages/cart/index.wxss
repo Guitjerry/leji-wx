@@ -78,11 +78,17 @@ page {
   border: 1rpx solid #ccc;
 }
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .cart_num_tool .goods_num {
-  width: 55rpx;
+  width: 80rpx;
   height: 55rpx;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .cart_num_tool .goods_num input {
+  text-align: center;
+  background: #e6e6e6;
+  margin: 10rpx;
+  width: 100rpx;
 }
 .footer_tool {
   position: fixed;

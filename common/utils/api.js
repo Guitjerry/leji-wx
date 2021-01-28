@@ -27,7 +27,7 @@ let APIS = {
    */
   listProductBycategoryId: (data) => {
     return ApiCreater({
-      url: '/product/list',
+      url: '/product/listByCategoryId',
       header: {
         'Authorization': "Bearer " + wx.getStorageSync("USER").token
       },

@@ -40,7 +40,7 @@
           <view class="goods_price">￥{{item.price}}</view>
           <view class="cart_num_tool">
             <view bindtap="handleItemNumEdit" data-id="{{item.id}}" data-operation="{{-1}}"  class="num_edit">-</view>
-            <view class="goods_num">{{item.count}}</view>
+            <view class="goods_num"><input value="{{item.count}}" type="number" bindblur="changeGoodCount" data-id="{{item.id}}"></input></view>
             <view bindtap="handleItemNumEdit" data-id="{{item.id}}" data-operation="{{1}}"  class="num_edit">+</view>
           </view>
         </view>

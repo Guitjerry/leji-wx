@@ -151,5 +151,34 @@ Page({
     this.setData({
       user
     })
+  },
+  sendCoupon (e) {
+    const couponId = e.currentTarget.dataset.id
+    const user =wx.getStorageSync('USER')
+    if(user.phone) {
+      wx.showToast({
+        title: '加载中',
+        icon: 'loading',
+        duration: 10000
+      })
+      request({ url: "/coupon/send?couponId=" + couponId + "&userId=" + user.uid })
+      .then(result => {
+        if(result.code === '200') {
+          wx.showToast({ title: '领取成功' });
+        }else {
+          wx.showModal({
+            title: '错误提示',
+            content: result.message,
+            showCancel:false
+          })
+        }
+        wx.hideToast();
+      })
+    }else {
+      this.setData({
+        hidderAuthPhone: false
+      })
+    }
+
   }
 })

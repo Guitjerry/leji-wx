@@ -34,6 +34,28 @@
           </view>
     </view>
     <view class="cart_title">优惠信息</view>
+    <view class="discount_main" wx:if="{{discountInfo.discountDtos.length>0}}" wx:for="{{discountInfo.discountDtos}}">
+        <view class="discount_main_man grid">
+            <text>满</text>
+            <text class="info" >{{item.discountNote}}</text>
+            <text class="price">-￥{{item.fullReduction[0].reducePrice}}</text>
+        </view>
+        <view class="discount_main_zhe grid" wx:if="{{item.pmsProductLadder.length>0}}">
+            <text>{{item.pmsProductLadder[0].discount}}折</text>
+            <text class="info">{{item.discountNote}}</text>
+            <text class="price"> -￥{{item.pmsProductLadder[0].discountDesc}}</text>
+        </view>
+    </view>
+      <view class="discount_main" wx:if="{{discountInfo.coupons.length>0}}" wx:for="{{discountInfo.coupons}}">
+          <view class="discount_main_quan grid">
+              <text>券</text>
+              <text class="info">{{discountInfo.coupons[0].name}}</text>
+              <text class="price">-￥{{discountInfo.coupons[0].amount}}</text>
+          </view>
+      </view>
+
+    <view class="cart_title">备注信息</view>
+    <textarea class="textarea-bg" placeholder="请输入备注信息" bindblur="getDataBindTap" auto-height />
   </view>
 
   <!-- 底部工具栏 -->

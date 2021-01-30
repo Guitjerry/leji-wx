@@ -30,6 +30,17 @@ Page({
     totalPrice: 0,
     totalNum: 0
   },
+  queryDiscount() {
+    let cart = wx.getStorageSync("cart") || [];
+    const user = wx.getStorageSync('USER')
+    const data = {carts:this.data.cart, memberId: user.uid}
+    API.queryDiscount(data).then(res=> {
+      this.setData({
+        discountInfo: res.data.data
+      })
+      console.info("返回的优惠信息" + JSON.stringify(this.data.discountInfo))
+    })
+  },
   onShow() {
     // 1 获取缓存中的收货地址信息
     const address = wx.getStorageSync("address");
@@ -51,6 +62,7 @@ Page({
       totalPrice, totalNum,
       address
     });
+    this.queryDiscount()
   },
   createOrder(){
     const user = wx.getStorageSync('USER')

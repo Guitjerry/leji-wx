@@ -65,6 +65,19 @@ let APIS = {
       data
     })
   },
+  /**
+   * 生成订单
+   */
+  queryDiscount: (data) => {
+    return ApiCreater({
+      url: '/product/queryDiscount',
+      header: {
+        'Authorization': "Bearer " + wx.getStorageSync("USER").token
+      },
+      method: 'POST',
+      data
+    })
+  },
 
 };
 

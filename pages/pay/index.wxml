@@ -35,7 +35,7 @@
     </view>
     <view class="cart_title">优惠信息</view>
     <view class="discount_main" wx:if="{{discountInfo.discountDtos.length>0}}" wx:for="{{discountInfo.discountDtos}}">
-        <view class="discount_main_man grid">
+        <view class="discount_main_man grid" wx:if="{{item.fullReduction.length>0}}">
             <text>满</text>
             <text class="info" >{{item.discountNote}}</text>
             <text class="price">-￥{{item.fullReduction[0].reducePrice}}</text>

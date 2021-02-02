@@ -1,9 +1,9 @@
 {
-  "pages": [ 
+  "pages": [
     "pages/index/index",
-    "pages/category/index", 
+    "pages/category/index",
     "pages/goods_list/index",
-    "pages/goods_detail/index", 
+    "pages/goods_detail/index",
     "pages/cart/index",
     "pages/collect/index",
     "pages/order/index",
@@ -40,13 +40,6 @@
         "selectedIconPath": "icons/category-o.png"
       },
       {
-        "pagePath": "pages/category/index",
-        "text": "秒杀",
-        "iconPath": "icons/category.png",
-        "selectedIconPath": "icons/category-o.png"
-      }
-      ,
-      {
         "pagePath": "pages/cart/index",
         "text": "进货单",
         "iconPath": "icons/cart.png",
@@ -61,8 +54,8 @@
       }
     ]
   },
-  
-    
+
+
   "sitemapLocation": "sitemap.json"
 }
 

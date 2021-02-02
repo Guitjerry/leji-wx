@@ -73,10 +73,11 @@ Page({
   },
   // 获取订单列表的方法
   async getOrders(type) {
+    const status = type-2;
     const memberId = wx.getStorageSync('USER').uid
-    const res = await request({ url: "/order/list", data: { status, memberId } });
+    const res = await request({ url: "/Order/list", data: { status, memberId } });
     this.setData({
-      orders: res.orders.map(v=>({...v,create_time_cn:(new Date(v.create_time*1000).toLocaleString())}))
+      orders: res.data.list
     })
   },
   // 根据标题索引来激活选中 标题数组

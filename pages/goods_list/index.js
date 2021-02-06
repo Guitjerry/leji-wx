@@ -61,6 +61,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.info("数据" + JSON.stringify(options))
     this.QueryParams.productCategoryId=options.cid||"";
     this.QueryParams.brandId=options.brandId||"";
     this.QueryParams.query=options.query||"";

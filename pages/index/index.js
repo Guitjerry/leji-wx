@@ -119,7 +119,7 @@ Page({
   },
   listByBrandId(e) {
     const id = e.currentTarget.dataset.id
-    wx.redirectTo({ url: '/pages/goods_list/index?brandId=' + id })
+    wx.navigateTo({ url: '/pages/goods_list/index?brandId=' + id })
   },
   goToDetail(e) {
     const user =wx.getStorageSync('USER')
@@ -128,7 +128,7 @@ Page({
       return
     }
     const type = e.currentTarget.dataset.type
-    wx.redirectTo({ url: '/pages/goods_list/index?type=' + type})
+    wx.navigateTo({ url: '/pages/goods_list/index?type=' + type})
   },
   getPhoneNumber (e) {
     const user = wx.getStorageSync('USER')

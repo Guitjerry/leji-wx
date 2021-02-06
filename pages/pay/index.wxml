@@ -55,7 +55,7 @@
       </view>
 
     <view class="cart_title">备注信息</view>
-    <textarea class="textarea-bg" placeholder="请输入备注信息" bindblur="getDataBindTap" auto-height />
+    <textarea class="textarea-bg" placeholder="请输入备注信息" value="{{note}}" maxlength="300" bindblur="getDataBindTap" auto-height />
   </view>
 
   <!-- 底部工具栏 -->

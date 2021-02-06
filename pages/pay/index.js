@@ -26,6 +26,7 @@ Page({
     address: {
 
     },
+    note:'',
     cart: [],
     totalPrice: 0,
     totalNum: 0
@@ -65,14 +66,20 @@ Page({
     this.queryDiscount()
   },
   createOrder(){
+    wx.showToast({
+      title: '正在提交'
+    })
     const user = wx.getStorageSync('USER')
-    const data = {addresses:this.data.address, carts:this.data.cart, memberId: user.uid}
+    const data = {addresses:this.data.address, carts:this.data.cart, memberId: user.uid,note: this.data.note}
     API.createOrder(data).then(res=> {
       if(res.data) {
+        wx.hideLoading()
         //跳转到订单详情页面
         wx.redirectTo({
-          url: '/pages/order/index'
+          url: '/pages/order/index?type=-1'
         })
+        wx.setStorageSync("cart", null)
+        wx.setStorageSync("address", null)
       }
     }).catch(resp=>{
 

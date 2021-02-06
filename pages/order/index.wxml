@@ -20,7 +20,7 @@
       </view>
       <view class="order_price_row" wx:if="{{item.deliveryCompany}}">
         <view class="order_price_text">物流公司</view>
-        <view class="order_price_value">￥{{item.deliveryCompany}}</view>
+        <view class="order_price_value">{{item.deliveryCompany}}</view>
       </view>
       <view class="order_price_row" wx:if="{{item.deliverySn}}">
         <view class="order_price_text">物流单号</view>

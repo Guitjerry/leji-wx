@@ -38,7 +38,6 @@ Page({
 
     this.getSwiperList();
     this.getCateList();
-    this.getFloorList();
     this.getBrandList();
     this.getNewGoodList();
     this.getRecommendProduct();
@@ -69,15 +68,6 @@ Page({
     .then(result => {
       this.setData({
         catesList: result.data
-      })
-    })
-  },
-  // 获取 楼层数据
-  getFloorList(){
-    request({ url: "/home/floordata" })
-    .then(result => {
-      this.setData({
-        floorList: result
       })
     })
   },

@@ -20,19 +20,19 @@
             <!-- 右侧 商品容器 -->
             <view class="goods_info_wrap" >
               <view class="goods_name">{{goodItem.name}}</view>
-              <view class="sale_youhui" wx:if="{{goodItem.productLadderList.length>0}}" wx:for="{{goodItem.productLadderList}}" wx:for-item='ladder' wx:key='{{index}}'>
-                <text class="zhe">折</text>
-                <text class="info">满{{ladder.count}}{{goodItem.unit}}按{{ladder.discount}}折计算</text>
-              </view>
-              <view class="sale_youhui" wx:if="{{goodItem.productFullReductionList.length>0}}" wx:for="{{goodItem.productFullReductionList}}" wx:for-item='fullReduction' wx:key='{{index}}'>
-                <text class="man">满</text>
-                <text class="info">金额满{{fullReduction.fullPrice}}减{{fullReduction.reducePrice}}元</text>
-              </view>
-              <view class="sale_youhui" wx:if="{{goodItem.couponList.length>0}}" wx:for="{{goodItem.couponList}}" wx:for-item='coupon' wx:key='{{index}}'>
-                <text class="quan">券</text>
-                <text class="info">{{coupon.name}}</text>
-                <text class="send" data-id="{{coupon.id}}" catchtap="sendCoupon">领取</text>
-              </view>
+<!--              <view class="sale_youhui" wx:if="{{goodItem.productLadderList.length>0}}" wx:for="{{goodItem.productLadderList}}" wx:for-item='ladder' wx:key='{{index}}'>-->
+<!--                <text class="zhe">折</text>-->
+<!--                <text class="info">满{{ladder.count}}{{goodItem.unit}}按{{ladder.discount}}折计算</text>-->
+<!--              </view>-->
+<!--              <view class="sale_youhui" wx:if="{{goodItem.productFullReductionList.length>0}}" wx:for="{{goodItem.productFullReductionList}}" wx:for-item='fullReduction' wx:key='{{index}}'>-->
+<!--                <text class="man">满</text>-->
+<!--                <text class="info">金额满{{fullReduction.fullPrice}}减{{fullReduction.reducePrice}}元</text>-->
+<!--              </view>-->
+<!--              <view class="sale_youhui" wx:if="{{goodItem.couponList.length>0}}" wx:for="{{goodItem.couponList}}" wx:for-item='coupon' wx:key='{{index}}'>-->
+<!--                <text class="quan">券</text>-->
+<!--                <text class="info">{{coupon.name}}</text>-->
+<!--                <text class="send" data-id="{{coupon.id}}" catchtap="sendCoupon">领取</text>-->
+<!--              </view>-->
 
               <view class="goods_price grid">
                 <text>￥{{user.phone || goodItem.isShow===1? goodItem.price : '?'}}</text>
@@ -42,7 +42,83 @@
           </view>
     </view>
   </block>
-  <block wx:elif="{{tabs[1].isActive}}">1</block>
-  <block wx:elif="{{tabs[2].isActive}}">2</block>
+  <block wx:elif="{{tabs[1].isActive}}">
+      <view class="first_tab">
+          <view class="goods_item"
+                wx:for="{{goodsList1}}"
+                wx:key="goods_id"
+                wx:for-item='goodItem'
+                bindtap="toGoodDetail"
+                id="{{goodItem.id}}"
+                shows ="{{goodItem.isShow}}"
+          >
+              <!-- 左侧 图片容器 -->
+              <view class="goods_img_wrap">
+                  <image mode="widthFix" src="{{goodItem.pic?goodItem.pic:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
+              </view>
+              <!-- 右侧 商品容器 -->
+              <view class="goods_info_wrap" >
+                  <view class="goods_name">{{goodItem.name}}</view>
+                  <!--              <view class="sale_youhui" wx:if="{{goodItem.productLadderList.length>0}}" wx:for="{{goodItem.productLadderList}}" wx:for-item='ladder' wx:key='{{index}}'>-->
+                  <!--                <text class="zhe">折</text>-->
+                  <!--                <text class="info">满{{ladder.count}}{{goodItem.unit}}按{{ladder.discount}}折计算</text>-->
+                  <!--              </view>-->
+                  <!--              <view class="sale_youhui" wx:if="{{goodItem.productFullReductionList.length>0}}" wx:for="{{goodItem.productFullReductionList}}" wx:for-item='fullReduction' wx:key='{{index}}'>-->
+                  <!--                <text class="man">满</text>-->
+                  <!--                <text class="info">金额满{{fullReduction.fullPrice}}减{{fullReduction.reducePrice}}元</text>-->
+                  <!--              </view>-->
+                  <!--              <view class="sale_youhui" wx:if="{{goodItem.couponList.length>0}}" wx:for="{{goodItem.couponList}}" wx:for-item='coupon' wx:key='{{index}}'>-->
+                  <!--                <text class="quan">券</text>-->
+                  <!--                <text class="info">{{coupon.name}}</text>-->
+                  <!--                <text class="send" data-id="{{coupon.id}}" catchtap="sendCoupon">领取</text>-->
+                  <!--              </view>-->
+
+                  <view class="goods_price grid">
+                      <text>￥{{user.phone || goodItem.isShow===1? goodItem.price : '?'}}</text>
+                      <text>￥{{goodItem.originalPrice}}</text>
+                  </view>
+              </view>
+          </view>
+      </view>
+  </block>
+  <block wx:elif="{{tabs[2].isActive}}">
+      <view class="first_tab">
+          <view class="goods_item"
+                wx:for="{{goodsList2}}"
+                wx:key="goods_id"
+                wx:for-item='goodItem'
+                bindtap="toGoodDetail"
+                id="{{goodItem.id}}"
+                shows ="{{goodItem.isShow}}"
+          >
+              <!-- 左侧 图片容器 -->
+              <view class="goods_img_wrap">
+                  <image mode="widthFix" src="{{goodItem.pic?goodItem.pic:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
+              </view>
+              <!-- 右侧 商品容器 -->
+              <view class="goods_info_wrap" >
+                  <view class="goods_name">{{goodItem.name}}</view>
+                  <!--              <view class="sale_youhui" wx:if="{{goodItem.productLadderList.length>0}}" wx:for="{{goodItem.productLadderList}}" wx:for-item='ladder' wx:key='{{index}}'>-->
+                  <!--                <text class="zhe">折</text>-->
+                  <!--                <text class="info">满{{ladder.count}}{{goodItem.unit}}按{{ladder.discount}}折计算</text>-->
+                  <!--              </view>-->
+                  <!--              <view class="sale_youhui" wx:if="{{goodItem.productFullReductionList.length>0}}" wx:for="{{goodItem.productFullReductionList}}" wx:for-item='fullReduction' wx:key='{{index}}'>-->
+                  <!--                <text class="man">满</text>-->
+                  <!--                <text class="info">金额满{{fullReduction.fullPrice}}减{{fullReduction.reducePrice}}元</text>-->
+                  <!--              </view>-->
+                  <!--              <view class="sale_youhui" wx:if="{{goodItem.couponList.length>0}}" wx:for="{{goodItem.couponList}}" wx:for-item='coupon' wx:key='{{index}}'>-->
+                  <!--                <text class="quan">券</text>-->
+                  <!--                <text class="info">{{coupon.name}}</text>-->
+                  <!--                <text class="send" data-id="{{coupon.id}}" catchtap="sendCoupon">领取</text>-->
+                  <!--              </view>-->
+
+                  <view class="goods_price grid">
+                      <text>￥{{user.phone || goodItem.isShow===1? goodItem.price : '?'}}</text>
+                      <text>￥{{goodItem.originalPrice}}</text>
+                  </view>
+              </view>
+          </view>
+      </view>
+  </block>
 
 </Tabs>

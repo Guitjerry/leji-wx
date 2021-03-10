@@ -46,7 +46,9 @@ Page({
         isActive: false
       }
     ],
-    goodsList:[]
+    goodsList:[],
+    goodsList1:[],
+    goodsList2:[],
   },
   // 接口要的参数
   QueryParams:{
@@ -66,6 +68,7 @@ Page({
     this.QueryParams.brandId=options.brandId||"";
     this.QueryParams.query=options.query||"";
     this.QueryParams.type=options.type||"";
+    this.QueryParams.sortType=0;
     this.getGoodsList();
   },
   onShow: function() {
@@ -77,16 +80,30 @@ Page({
 
   // 获取商品列表数据
   async getGoodsList(){
+    const sortType = this.QueryParams.sortType
     const res=await request({url:"/product/list",data:this.QueryParams});
     // 获取 总条数
     const total=res.total;
     // 计算总页数
     this.totalPages=Math.ceil(total/this.QueryParams.pagesize);
     // console.log(this.totalPages);
-    this.setData({
-      // 拼接了数组
-      goodsList:[...this.data.goodsList,...res.data.list]
-    })
+    if(sortType === 0) {
+      this.setData({
+        // 拼接了数组
+        goodsList:[...this.data.goodsList,...res.data.list]
+      })
+    } else if(sortType === 1) {
+      this.setData({
+        // 拼接了数组
+        goodsList1:[...this.data.goodsList1,...res.data.list]
+      })
+    } else if(sortType === 2) {
+      this.setData({
+        // 拼接了数组
+        goodsList2:[...this.data.goodsList2,...res.data.list]
+      })
+    }
+
 
     // 关闭下拉刷新的窗口 如果没有调用下拉刷新的窗口 直接关闭也不会报错
     wx.stopPullDownRefresh();
@@ -105,6 +122,23 @@ Page({
     this.setData({
       tabs
     })
+    this.QueryParams.sortType = index
+    this.QueryParams.pagesize = 5
+    this.QueryParams.pageNum = 1
+    if(index === 0) {
+      this.setData({
+        goodsList: []
+      })
+    }else if(index === 1) {
+      this.setData({
+        goodsList1: []
+      })
+    }else if(index === 2) {
+      this.setData({
+        goodsList2: []
+      })
+    }
+    this.getGoodsList(index);
   },
   // 页面上滑 滚动条触底事件
   onReachBottom(){

@@ -193,6 +193,7 @@
 }
 .brand_zone .body .single{
   padding: 7rpx;
+  margin:5rpx;
 }
 .brand_zone .body image {
   width: 155rpx;

@@ -122,7 +122,7 @@
                     <image src="{{item.logo}}"></image>
                 </view>
                 <view class="info">
-                    {{item.recommend || '爆品推荐'}}
+                    {{item.brandName}}
                 </view>
             </view>
         </view>

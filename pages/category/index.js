@@ -17,6 +17,11 @@ Page({
     cartCount:0,
     cartList:[],
     user:{},
+    queryParams: {
+      pagetNum:1,
+      pageSize:100,
+      productCategoryId: null
+    },
     hidderAuthPhone: true,
   },
   // 接口的返回数据
@@ -168,7 +173,12 @@ Page({
         })
       }
     }else {
-      API.listProductBycategoryId({productCategoryId: categoryId}).then(res => {
+      const queryParams = this.data.queryParams
+      queryParams.productCategoryId = categoryId
+      this.setData({
+        queryParams
+      })
+      API.listProductBycategoryId(this.data.queryParams).then(res => {
         if (res.data) {
           const goodList = res.data.data.list;
           this.setData({
@@ -291,5 +301,21 @@ Page({
     wx.switchTab({
       url: '/pages/cart/index'
     });
-  }
+  },
+  // 下拉刷新事件
+  // onPullDownRefresh(){
+  //   const _this =this
+  //   // 2 重置页码
+  //   _this.queryParams.pageNum=this.QueryParams.pageNum+1;
+  //   // 3 发送请求
+  //   API.listProductBycategoryId(this.queryParams.pageNum).then(res => {
+  //     if (res.data) {
+  //       const goodList = res.data.data.list;
+  //       this.setData({
+  //         goodList: goodList
+  //       })
+  //       _this.listGoodByCategoryId(categoryId)
+  //     }
+  //   })
+  // },
 });

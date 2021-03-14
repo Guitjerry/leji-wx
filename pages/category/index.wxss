@@ -124,9 +124,9 @@ page {
   padding: 5rpx;
   width: 100rpx;
   height: 100rpx;
-  right: 0rpx;
+  left: 0rpx;
   position: absolute;
-  top: 50%;
+  top: 75%;
   border-radius: 10rpx;
 }
 .cates .cates_container .cart .icon_border {

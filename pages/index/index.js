@@ -9,10 +9,12 @@ Page({
     catesList:[],
     // 楼层数据
     floorList:[],
+    member: null,
     //新品推荐
     newGoodList:[],
     //品牌
     newBrandList:[],
+    checked: false,
     RecommendProductList:[],
     user: {},
   },
@@ -22,6 +24,7 @@ Page({
     })
   },
   onShow() {
+    this.queryMember()
     this.getUserInfo();
   },
   // 页面开始加载 就会触发
@@ -99,6 +102,21 @@ Page({
           })
         })
   },
+  queryMember() {
+    const user = wx.getStorageSync('USER')
+    let checked = false
+    if(user && user.id) {
+      request({ url: "/member/" + user.id })
+          .then(result => {
+            if(result.data && result.data.status===1) {
+              checked = true
+            }
+      })
+    }
+    this.setData({
+      checked
+    })
+  },
   toGoodList(e) {
     const id = e.currentTarget.dataset.id
     let app = getApp();
@@ -112,8 +130,7 @@ Page({
     wx.navigateTo({ url: '/pages/goods_list/index?brandId=' + id })
   },
   goToDetail(e) {
-    const user =wx.getStorageSync('USER')
-    if(!user.phone) {
+    if(!this.data.checked) {
       this.showMask()
       return
     }
@@ -129,11 +146,14 @@ Page({
   goToGoodDetail(e) {
     const id = e.currentTarget.dataset.id
     const isShow = e.currentTarget.dataset.show
-    if(this.data.user.phone || isShow ===1) {
+    if(this.data.user.phone || isShow === 1) {
+      if(!this.data.checked) {
+        this.showMask()
+        return
+      }
       wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
     }else {
       this.showMask()
     }
-
   }
 })

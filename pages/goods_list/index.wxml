@@ -74,7 +74,7 @@
                   <!--              </view>-->
 
                   <view class="goods_price grid">
-                      <text>￥{{user.phone || goodItem.isShow===1? goodItem.price : '?'}}</text>
+                      <text>￥{{goodItem.isShow===1? goodItem.price : '?'}}</text>
                       <text>￥{{goodItem.originalPrice}}</text>
                   </view>
               </view>

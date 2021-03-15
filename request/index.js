@@ -4,7 +4,9 @@ let ajaxTimes=0;
 export const request=(params)=>{
   // 判断 url中是否带有 /my/ 请求的是私有的路径 带上header token
   let header={...params.header};
-  header["Authorization"]="Bearer " + wx.getStorageSync("USER").token;
+  const user = wx.getStorageSync("USER");
+  header["Authorization"]="Bearer " + user.token;
+
   // if(params.url.includes("/my/")){
   //   // 拼接header 带上token
   //   header["Authorization"]=wx.getStorageSync("token");
@@ -20,7 +22,8 @@ export const request=(params)=>{
     
 
   // 定义公共的url
-  const baseUrl="https://www.16518.top/wxApp";
+  // const baseUrl="https://www.16518.top/wxApp";
+  const baseUrl="http://localhost:8081/wxApi";
   return new Promise((resolve,reject)=>{
     wx.request({
      ...params,

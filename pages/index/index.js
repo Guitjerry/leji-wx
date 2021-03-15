@@ -41,8 +41,17 @@ Page({
     this.getSwiperList();
     this.getCateList();
     this.getBrandList();
-    this.getNewGoodList();
-    this.getRecommendProduct();
+    const _this = this
+    const user = wx.getStorageSync('USER')
+    if(user.token) {
+      _this.getNewGoodList();
+      _this.getRecommendProduct();
+    }else {
+      setTimeout(function (){
+        _this.getNewGoodList();
+        _this.getRecommendProduct();
+      },1000)
+    }
     this.getUserInfo();
 
   },
@@ -105,7 +114,7 @@ Page({
     const user = wx.getStorageSync('USER')
     if(!user.phone) {
       this.showMask()
-      return
+      return false
     }
 
     let checked = false
@@ -122,7 +131,7 @@ Page({
         title: '很抱歉，您还未审核通过哦',
         icon: 'none'
       })
-      return
+      return false
     }
 
     this.setData({
@@ -144,29 +153,25 @@ Page({
 
 
   goToDetail(e) {
-    this.queryMember()
-    const type = e.currentTarget.dataset.type
-    wx.navigateTo({ url: '/pages/goods_list/index?type=' + type})
+    if(!this.queryMember()) {
+      const type = e.currentTarget.dataset.type
+      wx.navigateTo({ url: '/pages/goods_list/index?type=' + type})
+    }
+
   },
   getPhoneNumber (e) {
+    wx.showToast({
+      title: '申请已提交，请耐心等待审核结果',
+      icon: 'none'
+    })
     const user = wx.getStorageSync('USER')
     this.setData({
       user: user
     })
   },
   goToGoodDetail(e) {
-    this.queryMember()
-    wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
-    // const id = e.currentTarget.dataset.id
-    // const isShow = e.currentTarget.dataset.show
-    // if(this.data.user.phone || isShow === 1) {
-    //   if(!this.data.checked) {
-    //     this.showMask()
-    //     return
-    //   }
-    //   wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
-    // }else {
-    //   this.showMask()
-    // }
+    if(this.queryMember()) {
+      wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
+    }
   }
 })

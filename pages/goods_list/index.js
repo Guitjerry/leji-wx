@@ -170,14 +170,22 @@ Page({
     const goodId = e.currentTarget.id
     const isShow = e.currentTarget.shows
     const user = wx.getStorageSync('USER')
-    if(user.phone || isShow===1 ) {
-     wx.redirectTo({
-       url: '/pages/goods_detail/index?goods_id=' + goodId
-     })
-    }else {
+    if(!user.phone) {
       this.setData({
         hidderAuthPhone: false
       })
+      return
+    }
+    if(isShow===1 ) {
+      wx.redirectTo({
+        url: '/pages/goods_detail/index?goods_id=' + goodId
+      })
+    }else {
+      wx.showToast({
+        title: '很抱歉，您还未审核通过哦',
+        icon: 'none'
+      })
+      return
     }
 
   },
@@ -185,6 +193,10 @@ Page({
     const user = wx.getStorageSync('USER')
     this.setData({
       user
+    })
+    wx.showToast({
+      title: '申请已提交，请耐心等待审核结果',
+      icon: 'none'
     })
   },
   sendCoupon (e) {

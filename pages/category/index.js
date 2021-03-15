@@ -210,6 +210,13 @@ Page({
       this.showMask()
       return
     }
+    if(user.status !== 1) {
+      wx.showToast({
+        title: '很抱歉，您还未审核通过哦',
+        icon: 'none'
+      })
+      return
+    }
     //设置商品
     var index = e.currentTarget.dataset.index;
     var newGoodList = this.data.goodList;
@@ -242,6 +249,13 @@ Page({
     const user =wx.getStorageSync('USER')
     if(!user.phone) {
       this.showMask()
+      return
+    }
+    if(user.status !== 1) {
+      wx.showToast({
+        title: '很抱歉，您还未审核通过哦',
+        icon: 'none'
+      })
       return
     }
     var index = e.currentTarget.dataset.index;
@@ -294,6 +308,10 @@ Page({
     const user = wx.getStorageSync('USER')
     this.setData({
       user: user
+    })
+    wx.showToast({
+      title: '申请已提交，请耐心等待审核结果',
+      icon: 'none'
     })
   },
 

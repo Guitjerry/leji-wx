@@ -24,7 +24,6 @@ Page({
     })
   },
   onShow() {
-    this.queryMember()
     this.getUserInfo();
   },
   // 页面开始加载 就会触发
@@ -104,6 +103,11 @@ Page({
   },
   queryMember() {
     const user = wx.getStorageSync('USER')
+    if(!user.phone) {
+      this.showMask()
+      return
+    }
+
     let checked = false
     if(user && user.id) {
       request({ url: "/member/" + user.id })
@@ -113,6 +117,14 @@ Page({
             }
       })
     }
+    if(!checked) {
+      wx.showToast({
+        title: '很抱歉，您还未审核通过哦',
+        icon: 'none'
+      })
+      return
+    }
+
     this.setData({
       checked
     })
@@ -129,11 +141,10 @@ Page({
     const id = e.currentTarget.dataset.id
     wx.navigateTo({ url: '/pages/goods_list/index?brandId=' + id })
   },
+
+
   goToDetail(e) {
-    if(!this.data.checked) {
-      this.showMask()
-      return
-    }
+    this.queryMember()
     const type = e.currentTarget.dataset.type
     wx.navigateTo({ url: '/pages/goods_list/index?type=' + type})
   },
@@ -144,16 +155,18 @@ Page({
     })
   },
   goToGoodDetail(e) {
-    const id = e.currentTarget.dataset.id
-    const isShow = e.currentTarget.dataset.show
-    if(this.data.user.phone || isShow === 1) {
-      if(!this.data.checked) {
-        this.showMask()
-        return
-      }
-      wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
-    }else {
-      this.showMask()
-    }
+    this.queryMember()
+    wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
+    // const id = e.currentTarget.dataset.id
+    // const isShow = e.currentTarget.dataset.show
+    // if(this.data.user.phone || isShow === 1) {
+    //   if(!this.data.checked) {
+    //     this.showMask()
+    //     return
+    //   }
+    //   wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
+    // }else {
+    //   this.showMask()
+    // }
   }
 })

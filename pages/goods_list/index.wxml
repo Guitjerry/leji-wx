@@ -11,7 +11,6 @@
         wx:for-item='goodItem'
         bindtap="toGoodDetail"
         id="{{goodItem.id}}"
-        shows ="{{goodItem.isShow}}"
         >
             <!-- 左侧 图片容器 -->
             <view class="goods_img_wrap">
@@ -35,7 +34,7 @@
 <!--              </view>-->
 
               <view class="goods_price grid">
-                <text>￥{{user.phone || goodItem.isShow===1? goodItem.price : '?'}}</text>
+                <text>￥{{checked? goodItem.price : '?'}}</text>
                 <text>￥{{goodItem.originalPrice}}</text>
               </view>
             </view>
@@ -74,7 +73,7 @@
                   <!--              </view>-->
 
                   <view class="goods_price grid">
-                      <text>￥{{goodItem.status===1? goodItem.price : '?'}}</text>
+                      <text>￥{{checked? goodItem.price : '?'}}</text>
                       <text>￥{{goodItem.originalPrice}}</text>
                   </view>
               </view>
@@ -113,7 +112,7 @@
                   <!--              </view>-->
 
                   <view class="goods_price grid">
-                      <text>￥{{user.phone || goodItem.isShow===1? goodItem.price : '?'}}</text>
+                      <text>￥{{checked? goodItem.price : '?'}}</text>
                       <text>￥{{goodItem.originalPrice}}</text>
                   </view>
               </view>

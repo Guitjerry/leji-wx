@@ -33,7 +33,7 @@
                     <view class="good_description">{{item.subTitle}}</view>
                     <view class="grid good_price">
                         <text class="icon">促</text>
-                        <text class="sale_price_pre">{{item.isShow===1? '￥' + item.price: '￥' + '?'}}</text>
+                        <text class="sale_price_pre">{{checked? '￥' + item.price: '￥' + '?'}}</text>
                         <text class="sale_price_last" wx:if="{{item.unit}}">{{'/' + item.unit}}</text>
                     </view>
                     <view class="grid grid-right add_btn">

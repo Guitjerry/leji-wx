@@ -81,9 +81,14 @@ Page({
   },
   getUserInfo() {
     const user = wx.getStorageSync('USER')
-    this.setData({
-      user: user
-    })
+    request({ url: "/member/" + user.id })
+        .then(result => {
+          if (result.data && result.data.status === 1) {
+            this.setData({
+              checked: true
+            })
+          }
+        })
   },
   // 获取分类数据
   async getCates() {
@@ -205,104 +210,172 @@ Page({
     })
   },
   goodSubtraction(e) {
-    const user =wx.getStorageSync('USER')
-    if(!user.phone) {
-      this.showMask()
-      return
-    }
-    if(user.status !== 1) {
-      wx.showToast({
-        title: '很抱歉，您还未审核通过哦',
-        icon: 'none'
-      })
-      return
-    }
-    //设置商品
-    var index = e.currentTarget.dataset.index;
-    var newGoodList = this.data.goodList;
-    var good = newGoodList[index];
+    const user = wx.getStorageSync('USER')
+    let checked = false
+    if(user && user.id) {
+      request({ url: "/member/" + user.id })
+          .then(result => {
+            if(!result.data.phone) {
+              this.setData({
+                hidderAuthPhone: false
+              })
+              return false
+            }
+            if(result.data && result.data.status===1) {
+              checked = true
+            }
+            if(!checked) {
+              wx.showToast({
+                title: '很抱歉，您还未审核通过哦',
+                icon: 'none'
+              })
+              return false
+            }
+            this.setData({
+              checked
+            })
+            if(checked) {
+              //设置商品
+              var index = e.currentTarget.dataset.index;
+              var newGoodList = this.data.goodList;
+              var good = newGoodList[index];
 
-    //设置缓存
-    const cartList = wx.getStorageSync("cart");
-    const goodId = good.id
+              //设置缓存
+              const cartList = wx.getStorageSync("cart");
+              const goodId = good.id
 
-    let filterCartList = []
-    if(cartList.length >0) {
-      for(const cart of cartList) {
-        if(cart.id === goodId && cart.count>0) {
-          cart.count = good.count-1
-        }
-        filterCartList.push(cart)
-      }
+              let filterCartList = []
+              if(cartList.length >0) {
+                for(const cart of cartList) {
+                  if(cart.id === goodId && cart.count>0) {
+                    cart.count = good.count-1
+                  }
+                  filterCartList.push(cart)
+                }
+              }
+              filterCartList = filterCartList.filter(cart=>cart.count>0)
+              console.info('减掉更新后的购物车缓存' + JSON.stringify(filterCartList))
+              wx.setStorageSync('cart', filterCartList)
+              this.onShow()
+            }
+          })
     }
-    filterCartList = filterCartList.filter(cart=>cart.count>0)
-    console.info('减掉更新后的购物车缓存' + JSON.stringify(filterCartList))
-    wx.setStorageSync('cart', filterCartList)
-    this.onShow()
+
   },
   showMask: function () {
     this.setData({
       hidderAuthPhone: false,
     })
   },
+  // queryMember() {
+  //   const user = wx.getStorageSync('USER')
+  //   let checked = false
+  //   if(user && user.id) {
+  //     request({ url: "/member/" + user.id })
+  //         .then(result => {
+  //           if(!result.data.phone) {
+  //             this.setData({
+  //               hidderAuthPhone: false
+  //             })
+  //             return false
+  //           }
+  //           if(result.data && result.data.status===1) {
+  //             checked = true
+  //           }
+  //           if(!checked) {
+  //             wx.showToast({
+  //               title: '很抱歉，您还未审核通过哦',
+  //               icon: 'none'
+  //             })
+  //             return false
+  //           }
+  //           this.setData({
+  //             checked
+  //           })
+  //           return checked
+  //         })
+  //   }
+  //
+  //
+  // },
   goodAdd(e) {
-    const user =wx.getStorageSync('USER')
-    if(!user.phone) {
-      this.showMask()
-      return
-    }
-    if(user.status !== 1) {
-      wx.showToast({
-        title: '很抱歉，您还未审核通过哦',
-        icon: 'none'
-      })
-      return
-    }
-    var index = e.currentTarget.dataset.index;
-    var newGoodList = this.data.goodList;
-    var good = newGoodList[index];
+    // if(!this.queryMember()) {
+    //   return false
+    // }
+    const user = wx.getStorageSync('USER')
+    let checked = false
+    if(user && user.id) {
+      request({ url: "/member/" + user.id })
+          .then(result => {
+            if(!result.data.phone) {
+              this.setData({
+                hidderAuthPhone: false
+              })
+              return false
+            }
+            if(result.data && result.data.status===1) {
+              checked = true
+            }
+            if(!checked) {
+              wx.showToast({
+                title: '很抱歉，您还未审核通过哦',
+                icon: 'none'
+              })
+              return false
+            }
+            this.setData({
+              checked
+            })
+            if(checked) {
+              var index = e.currentTarget.dataset.index;
+              var newGoodList = this.data.goodList;
+              var good = newGoodList[index];
 
-    //设置缓存
-    const cartList = wx.getStorageSync("cart");
-    const goodId = good.id
+              //设置缓存
+              const cartList = wx.getStorageSync("cart");
+              const goodId = good.id
 
-    const cartMap = new Map()
-    const goodMap = new Map()
-    //商品
-    for(const good of newGoodList) {
-      goodMap.set(good.id, good)
-    }
-    //购物车
-    for(const cart of cartList) {
-      cartMap.set(cart.id, cart)
+              const cartMap = new Map()
+              const goodMap = new Map()
+              //商品
+              for(const good of newGoodList) {
+                goodMap.set(good.id, good)
+              }
+              //购物车
+              for(const cart of cartList) {
+                cartMap.set(cart.id, cart)
+              }
+
+              let newGood = {}
+              let filterCartList = []
+              if(cartList) {
+                filterCartList = cartList.filter(cart => cart.id!== goodId)
+              }
+
+              if(cartMap.has(goodId)) {
+                newGood = cartMap.get(goodId)
+                newGood.count = newGood.count + 1
+                for(const cart of cartList) {
+                  if(cart.id === newGood.id) {
+                    filterCartList.push(newGood)
+                  }
+                }
+              }else {
+                newGood = goodMap.get(goodId)
+                newGood.count = 1
+                filterCartList.push(newGood)
+              }
+
+              console.info('增加更新后的购物车缓存' + JSON.stringify(filterCartList))
+              if(filterCartList.length > 0) {
+                filterCartList =  filterCartList.filter(cart=> cart.count>0)
+              }
+              wx.setStorageSync('cart', filterCartList)
+              this.onShow()
+            }
+          })
     }
 
-    let newGood = {}
-    let filterCartList = []
-    if(cartList) {
-      filterCartList = cartList.filter(cart => cart.id!== goodId)
-    }
-
-    if(cartMap.has(goodId)) {
-      newGood = cartMap.get(goodId)
-      newGood.count = newGood.count + 1
-      for(const cart of cartList) {
-        if(cart.id === newGood.id) {
-          filterCartList.push(newGood)
-        }
-      }
-    }else {
-      newGood = goodMap.get(goodId)
-      newGood.count = 1
-      filterCartList.push(newGood)
-    }
-
-    console.info('增加更新后的购物车缓存' + JSON.stringify(filterCartList))
-    if(filterCartList.length > 0) {
-      filterCartList =  filterCartList.filter(cart=> cart.count>0)
-    }
-    wx.setStorageSync('cart', filterCartList)
-    this.onShow()
   },
   getPhoneNumber (e) {
     const user = wx.getStorageSync('USER')

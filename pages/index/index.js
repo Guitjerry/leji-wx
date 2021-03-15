@@ -24,7 +24,18 @@ Page({
     })
   },
   onShow() {
+    const _this = this
+    const user = wx.getStorageSync('USER')
     this.getUserInfo();
+    if(user.token) {
+      _this.getNewGoodList();
+      _this.getRecommendProduct();
+    }else {
+      setTimeout(function (){
+        _this.getNewGoodList();
+        _this.getRecommendProduct();
+      },1000)
+    }
   },
   // 页面开始加载 就会触发
   onLoad: function (options) {
@@ -41,27 +52,20 @@ Page({
     this.getSwiperList();
     this.getCateList();
     this.getBrandList();
-    const _this = this
-    const user = wx.getStorageSync('USER')
-    if(user.token) {
-      _this.getNewGoodList();
-      _this.getRecommendProduct();
-    }else {
-      setTimeout(function (){
-        _this.getNewGoodList();
-        _this.getRecommendProduct();
-      },1000)
-    }
     this.getUserInfo();
 
   },
   getUserInfo() {
     const  _this = this
     setTimeout(function () {
-      const user = wx.getStorageSync('USER')
-      _this.setData({
-        user: user
-      })
+          request({ url: "/member/" + user.id })
+              .then(result => {
+                if (result.data && result.data.status === 1) {
+                  this.setData({
+                    checked: true
+                  })
+                }
+              })
     },1000)
   },
   // 获取轮播图数据
@@ -110,34 +114,6 @@ Page({
           })
         })
   },
-  queryMember() {
-    const user = wx.getStorageSync('USER')
-    if(!user.phone) {
-      this.showMask()
-      return false
-    }
-
-    let checked = false
-    if(user && user.id) {
-      request({ url: "/member/" + user.id })
-          .then(result => {
-            if(result.data && result.data.status===1) {
-              checked = true
-            }
-      })
-    }
-    if(!checked) {
-      wx.showToast({
-        title: '很抱歉，您还未审核通过哦',
-        icon: 'none'
-      })
-      return false
-    }
-
-    this.setData({
-      checked
-    })
-  },
   toGoodList(e) {
     const id = e.currentTarget.dataset.id
     let app = getApp();
@@ -153,9 +129,33 @@ Page({
 
 
   goToDetail(e) {
-    if(!this.queryMember()) {
-      const type = e.currentTarget.dataset.type
-      wx.navigateTo({ url: '/pages/goods_list/index?type=' + type})
+    const user = wx.getStorageSync('USER')
+    let checked = false
+    if(user && user.id) {
+      request({ url: "/member/" + user.id })
+          .then(result => {
+            if(!result.data.phone) {
+              this.setData({
+                hidderAuthPhone: false
+              })
+              return false
+            }
+            if(result.data && result.data.status===1) {
+              checked = true
+            }
+            if(!checked) {
+              wx.showToast({
+                title: '很抱歉，您还未审核通过哦',
+                icon: 'none'
+              })
+              return false
+            }
+            if(checked) {
+              const type = e.currentTarget.dataset.type
+              wx.navigateTo({ url: '/pages/goods_list/index?type=' + type})
+            }
+          })
+
     }
 
   },
@@ -170,8 +170,33 @@ Page({
     })
   },
   goToGoodDetail(e) {
-    if(this.queryMember()) {
-      wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
+    const id = e.currentTarget.dataset.id
+    const user = wx.getStorageSync('USER')
+    let checked = false
+    if(user && user.id) {
+      request({ url: "/member/" + user.id })
+          .then(result => {
+            if(!result.data.phone) {
+              this.setData({
+                hidderAuthPhone: false
+              })
+              return false
+            }
+            if(result.data && result.data.status===1) {
+              checked = true
+            }
+            if(!checked) {
+              wx.showToast({
+                title: '很抱歉，您还未审核通过哦',
+                icon: 'none'
+              })
+              return false
+            }
+            if(checked) {
+              wx.redirectTo({ url: '/pages/goods_detail/index?goods_id=' + id})
+            }
+          })
+
     }
   }
 })

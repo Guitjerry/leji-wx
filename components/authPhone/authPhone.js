@@ -41,7 +41,10 @@ Component({
           } else { //允许授权执行跳转
             //获取用户信息
             request({url:"/session/wetchatGetPhone",data:queryData}).then(result => {
-              wx.setStorageSync('USER', result.data)
+
+              const user = wx.getStorageSync('USER')
+              user.phone = result.data.phone
+              wx.setStorageSync('USER', user)
               this.setData({
                 user: result.data
               })

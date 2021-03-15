@@ -72,12 +72,19 @@ Page({
     this.getGoodsList();
   },
   onShow: function() {
-    const user = wx.getStorageSync('USER')
-    this.setData({
-      user: user
-    })
+    this.getUserInfo()
   },
-
+  getUserInfo() {
+    const user = wx.getStorageSync('USER')
+    request({ url: "/member/" + user.id })
+        .then(result => {
+          if (result.data && result.data.status === 1) {
+            this.setData({
+              checked: true
+            })
+          }
+        })
+  },
   // 获取商品列表数据
   async getGoodsList(){
     const sortType = this.QueryParams.sortType
@@ -168,26 +175,35 @@ Page({
   },
   toGoodDetail (e) {
     const goodId = e.currentTarget.id
-    const isShow = e.currentTarget.shows
     const user = wx.getStorageSync('USER')
-    if(!user.phone) {
-      this.setData({
-        hidderAuthPhone: false
-      })
-      return
-    }
-    if(isShow===1 ) {
-      wx.redirectTo({
-        url: '/pages/goods_detail/index?goods_id=' + goodId
-      })
-    }else {
-      wx.showToast({
-        title: '很抱歉，您还未审核通过哦',
-        icon: 'none'
-      })
-      return
-    }
+    let checked = false
+    if(user && user.id) {
+      request({ url: "/member/" + user.id })
+          .then(result => {
+            if(!result.data.phone) {
+              this.setData({
+                hidderAuthPhone: false
+              })
+              return false
+            }
+            if(result.data && result.data.status===1) {
+              checked = true
+            }
+            if(!checked) {
+              wx.showToast({
+                title: '很抱歉，您还未审核通过哦',
+                icon: 'none'
+              })
+              return false
+            }
+            if(checked) {
+              wx.redirectTo({
+                url: '/pages/goods_detail/index?goods_id=' + goodId
+              })
+            }
+          })
 
+    }
   },
   getPhoneNumber () {
     const user = wx.getStorageSync('USER')

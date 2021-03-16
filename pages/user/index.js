@@ -17,7 +17,7 @@ Page({
     const _this = this
     request({ url: "/member/" + user.id })
         .then(result => {
-          if (result.data && result.data.status === 1) {
+          if (result.data && result.data.position === 1) {
             _this.setData({
               isShopAdmin: true
             })

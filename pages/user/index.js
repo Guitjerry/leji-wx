@@ -11,5 +11,8 @@ Page({
       
     this.setData({userinfo,collectNums:collect.length});
       
+  },
+  toCheckUser() {
+    wx.navigateTo({'url':'/pages/checkUser/index?type=1'})
   }
 })

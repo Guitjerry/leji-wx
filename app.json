@@ -12,7 +12,9 @@
     "pages/feedback/index",
     "pages/login/index",
     "pages/auth/index",
-    "pages/pay/index"
+    "pages/pay/index",
+    "pages/personal/index",
+    "pages/checkUser/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

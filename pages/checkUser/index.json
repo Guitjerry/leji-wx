@@ -1,0 +1,7 @@
+{
+
+  "usingComponents": {
+    "Tabs":"../../components/Tabs/Tabs"
+  },
+  "navigationBarTitleText":"用户审核"
+}

@@ -56,6 +56,7 @@ Page({
 
   },
   getUserInfo() {
+    const user = wx.getStorageSync('USER')
     const  _this = this
     setTimeout(function () {
           request({ url: "/member/" + user.id })

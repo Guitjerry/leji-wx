@@ -1,0 +1,58 @@
+<view class="page-main">
+<!--  <view class="page-category">-->
+<!--    <view class="category-header">-->
+<!--      <view class="title">基础功能</view>-->
+<!--    </view>-->
+<!--    <view class="grid grid-between category-body">-->
+<!--      <view class="category-item">-->
+<!--        <view class="icon">-->
+<!--          <image src="/icons/add.png"></image>-->
+<!--        </view>-->
+<!--        <view class="info">新增商品</view>-->
+<!--      </view>-->
+<!--      <view class="category-item">-->
+<!--        <view class="icon">-->
+<!--          <image src="/icons/good.png"></image>-->
+<!--        </view>-->
+<!--        <view class="info">商品列表</view>-->
+<!--      </view>-->
+<!--      <view class="category-item">-->
+<!--        <view class="icon">-->
+<!--          <image src="/icons/order.png"></image>-->
+<!--        </view>-->
+<!--        <view class="info">订单管理</view>-->
+<!--      </view>-->
+<!--    </view>-->
+<!--  </view>-->
+  <view class="page-category">
+    <view class="category-header">
+      <view class="title">店铺管理</view>
+    </view>
+    <view class="grid grid-between category-body">
+      <view class="category-item">
+        <view class="icon">
+          <image src="/icons/member.png"></image>
+        </view>
+        <view class="info">客户管理</view>
+      </view>
+      <view class="category-item">
+        <view class="icon">
+          <image src="/icons/check.png"></image>
+        </view>
+        <view class="info">用户审核</view>
+      </view>
+      <view class="category-item">
+        <view class="icon">
+          <image src="/icons/order.png"></image>
+        </view>
+        <view class="info">订单管理</view>
+      </view>
+<!--      <view class="category-item">-->
+<!--        <view class="icon">-->
+<!--          <image src="/icons/coupon.png"></image>-->
+<!--        </view>-->
+<!--        <view class="info">优惠券管理</view>-->
+<!--      </view>-->
+    </view>
+  </view>
+</view>

@@ -3,44 +3,19 @@
     <view class="page__bd">
       <view wx:if="{{type===0}}" class="weui-panel weui-panel_access">
       <view class="weui-panel__hd">待审核用户</view>
-      <view class="weui-panel__bd">
+      <view wx:for="{{members}}" wx:key="index" wx:if="{{item.phone && item.status===0}}"  class="weui-panel__bd">
         <view class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd">
-            <image class="weui-media-box__thumb" src="/icons/member.png" alt></image>
-          </view>
+<!--          <view class="weui-media-box__hd">-->
+<!--            <image class="weui-media-box__thumb" src="/icons/member.png" alt></image>-->
+<!--          </view>-->
           <view class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">用户1</h4>
-            <view class="weui-media-box__desc">18620257632。</view>
+            <h4 class="weui-media-box__title">{{item.phone}}</h4>
+            <view class="weui-media-box__desc">{{item.createTime}}</view>
           </view>
-          <view class="weui-media-box__bd" style="margin-left:40%">
-            <a class="weui-btn weui-btn-black" style="padding:10rpx">审核通过</a>
-          </view>
-        </view>
-      </view>
-      <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd">
-            <image class="weui-media-box__thumb" src="/icons/member.png" alt></image>
-          </view>
-          <view class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">用户1</h4>
-            <view class="weui-media-box__desc">18620257632。</view>
-          </view>
-          <view class="weui-media-box__bd" style="margin-left:40%">
-            <a class="weui-btn weui-btn-black" style="padding:10rpx">审核通过</a>
-          </view>
-        </view>
-      </view>
-      <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd">
-            <image class="weui-media-box__thumb" src="/icons/member.png" alt></image>
-          </view>
-          <view class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">用户1</h4>
-            <view class="weui-media-box__desc">18620257632。</view>
-          </view>
-          <view class="weui-media-box__bd" style="margin-left:40%">
+            <view catchtap="call" data-phone="{{item.phone}}" style="margin-left:20%">
+                <image src="/icons/call.png" style="width:60rpx;height:60rpx"></image>
+            </view>
+          <view class="weui-media-box__bd" style="margin-left:20rpx" catchtap="checkedUser" data-id="{{item.id}}">
             <a class="weui-btn weui-btn-black" style="padding:10rpx">审核通过</a>
           </view>
         </view>
@@ -48,27 +23,18 @@
     </view>
       <view wx:if="{{type===1}}" class="weui-panel weui-panel_access">
         <view class="weui-panel__hd">已审核用户</view>
-        <view class="weui-panel__bd">
+        <view wx:for="{{members}}" wx:key="index" wx:if="{{item.phone && item.status===1}}" class="weui-panel__bd">
           <view class="weui-media-box weui-media-box_appmsg">
             <view class="weui-media-box__hd">
               <image class="weui-media-box__thumb" src="/icons/member.png" alt></image>
             </view>
             <view class="weui-media-box__bd">
-              <h4 class="weui-media-box__title">用户2</h4>
-              <view class="weui-media-box__desc">18620257632。</view>
+              <h4 class="weui-media-box__title">{{item.phone}}</h4>
+              <view class="weui-media-box__desc">{{item.createTime}}</view>
             </view>
-          </view>
-        </view>
-        <view class="weui-panel__bd">
-          <view class="weui-media-box weui-media-box_appmsg">
-            <view class="weui-media-box__hd">
-              <image class="weui-media-box__thumb" src="/icons/member.png" alt></image>
-            </view>
-            <view class="weui-media-box__bd">
-              <h4 class="weui-media-box__title">用户2</h4>
-              <view class="weui-media-box__desc">18620257632。</view>
-            </view>
-
+              <view catchtap="call" data-phone="{{item.phone}}" style="margin-left:40%">
+                  <image src="/icons/call.png" style="width:60rpx;height:60rpx"></image>
+              </view>
           </view>
         </view>
       </view>

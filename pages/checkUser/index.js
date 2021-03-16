@@ -1,9 +1,11 @@
 // pages/user/index.js
 import { request } from "../../request/index.js";
-
+const App = getApp()
+const { API } = App.services;
 Page({
   data: {
     type: null,
+    members:[],
     tabs: [
       {
         id: 0,
@@ -19,8 +21,40 @@ Page({
   },
   queryMembers () {
     const query = {pageSize: 100, pageNum: 1}
-    request({url:"/member/list",query}).then(result => {
-
+    request({url:"/member/list",data: query}).then(result => {
+        this.setData({
+          members: result.data
+        })
+    })
+  },
+  checkedUser(e) {
+    const id = e.currentTarget.dataset.id
+    wx.showModal({
+      title: '信息提示',
+      content: '确认审核通过吗?通过后将可以看到产品价格',
+      success(res) {
+        const data = {id, status:1}
+        API.updateMember(data).then(res=> {
+          if(res.data) {
+            wx.showToast({
+              title:'审核通过',
+              icon: "none"
+            })
+          }
+        })
+      }
+    })
+  },
+  call(e) {
+    const phone = e.currentTarget.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber:phone,
+      success:function () {
+        console.log("拨打电话成功！")
+      },
+      fail:function () {
+        console.log("拨打电话失败！")
+      }
     })
   },
   onShow(){

@@ -55,7 +55,6 @@ let APIS = {
    * 生成订单
    */
   createOrder: (data) => {
-    debugger
     return ApiCreater({
       url: '/Order/saveOrder',
       header: {
@@ -78,6 +77,18 @@ let APIS = {
       data
     })
   },
+
+  updateMember: (data) => {
+    return ApiCreater({
+      url: '/member/update',
+      header: {
+        'Authorization': "Bearer " + wx.getStorageSync("USER").token
+      },
+      method: 'POST',
+      data
+    })
+  },
+
 
 };
 

@@ -62,7 +62,7 @@ Page({
           request({ url: "/member/" + user.id })
               .then(result => {
                 if (result.data && result.data.status === 1) {
-                  this.setData({
+                  _this.setData({
                     checked: true
                   })
                 }

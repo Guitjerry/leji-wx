@@ -33,15 +33,19 @@ Page({
       title: '信息提示',
       content: '确认审核通过吗?通过后将可以看到产品价格',
       success(res) {
-        const data = {id, status:1}
-        API.updateMember(data).then(res=> {
-          if(res.data) {
-            wx.showToast({
-              title:'审核通过',
-              icon: "none"
-            })
-          }
-        })
+        if (res.cancel) {
+
+        }else {
+          const data = {id, status:1}
+          API.updateMember(data).then(res=> {
+            if(res.data) {
+              wx.showToast({
+                title:'审核通过',
+                icon: "none"
+              })
+            }
+          })
+        }
       }
     })
   },

@@ -29,6 +29,7 @@ Page({
   },
   checkedUser(e) {
     const id = e.currentTarget.dataset.id
+    const _this =this
     wx.showModal({
       title: '信息提示',
       content: '确认审核通过吗?通过后将可以看到产品价格',
@@ -43,6 +44,7 @@ Page({
                 title:'审核通过',
                 icon: "none"
               })
+              _this.queryMembers()
             }
           })
         }

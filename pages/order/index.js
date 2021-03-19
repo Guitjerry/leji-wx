@@ -74,7 +74,7 @@ Page({
   // 获取订单列表的方法
   async getOrders(type) {
     const status = type-2;
-    const memberId = wx.getStorageSync('USER').uid
+    const memberId = wx.getStorageSync('USER').id
     const res = await request({ url: "/Order/list", data: { status, memberId } });
     this.setData({
       orders: res.data.list

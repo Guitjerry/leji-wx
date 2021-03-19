@@ -70,7 +70,7 @@ Page({
       title: '正在提交'
     })
     const user = wx.getStorageSync('USER')
-    const data = {addresses:this.data.address, carts:this.data.cart, memberId: user.uid,note: this.data.note}
+    const data = {addresses:this.data.address, carts:this.data.cart, memberId: user.id,note: this.data.note}
     API.createOrder(data).then(res=> {
       if(res.data) {
         wx.hideLoading()

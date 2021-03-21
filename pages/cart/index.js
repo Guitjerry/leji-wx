@@ -178,7 +178,7 @@ Page({
   async handlePay(){
     // 1 判断收货地址
     const {address,totalNum}=this.data;
-    if(!address.userName){
+    if(!address || !address.userName){
       await showToast({title:"您还没有选择收货地址"});
       return;
     }

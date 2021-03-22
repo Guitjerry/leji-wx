@@ -17,6 +17,7 @@ Page({
     cartCount:0,
     cartList:[],
     user:{},
+    brandList:[],
     queryParams: {
       pagetNum:1,
       pageSize:100,
@@ -108,6 +109,15 @@ Page({
       rightContent
     })
   },
+    //查询新品推荐
+    getCategoryBrand(categoryId){
+      request({ url: "/productCategory/findBrandByCategoryId/" + categoryId })
+          .then(result => {
+            this.setData({
+              brandList: result.data
+            })
+          })
+    },
   // 左侧菜单的点击事件
   handleItemTap(e) {
     console.info('点击的数据' + JSON.stringify(e))
@@ -117,7 +127,9 @@ Page({
     3 根据不同的索引来渲染右侧的商品内容
      */
     const { index } = e.currentTarget.dataset;
-
+    const categoryId = e.currentTarget.dataset.id;
+    //请求获得对应的品牌
+    this.getCategoryBrand(categoryId)
     let rightContent = this.Cates[index].children;
     this.setData({
       currentIndex: index,

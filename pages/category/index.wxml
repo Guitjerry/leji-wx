@@ -11,6 +11,7 @@
                     wx:key="*this"
                     bindtap="handleItemTap"
                     data-index="{{index}}"
+                    data-id="{{item.id}}"
             >
                 <view id="{{'item-' + categoryId}}">{{item.name}}</view>
 
@@ -18,11 +19,17 @@
         </scroll-view>
         <!-- 右侧商品内容 -->
         <scroll-view scroll-top="{{scrollTop}}" scroll-y class="right_content">
-            <view class="goods_title grid">
-                <text class="grid grid-center title {{categoryId == item1.id? 'selected': ''}} " wx:for="{{rightContent}}"
-                      wx:for-index="index1"
-                      wx:for-item="item1" bindtap="listGood" data-id="{{item1.id}}">{{item1.name}}
-                </text>
+            <view class="goods_title grid" >
+                <view wx:for="{{brandList}}" wx:for-item="item1">
+                    <view>
+                        <image src="{{item1.logo}}" style="width:200rpx;height:200rpx"></image>
+                        <text class="grid grid-center title {{categoryId == item1.id? 'selected': ''}} "
+                              bindtap="listGood" data-id="{{item1.id}}">{{item1.name}}
+                        </text>
+                    </view>
+                </view>
+
+
             </view>
             <view wx:for="{{goodList}}"  wx:key="*this" class="grid goods_body">
                 <view class="left">

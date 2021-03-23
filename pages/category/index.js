@@ -17,6 +17,7 @@ Page({
     cartCount:0,
     cartList:[],
     user:{},
+    brandName: '',
     brandList:[],
     queryParams: {
       pagetNum:1,
@@ -128,16 +129,21 @@ Page({
      */
     const { index } = e.currentTarget.dataset;
     const categoryId = e.currentTarget.dataset.id;
+    this.setData({
+      categoryId
+    })
     //请求获得对应的品牌
     this.getCategoryBrand(categoryId)
-    let rightContent = this.Cates[index].children;
+    this.setData({
+      goodList: []
+    })
     this.setData({
       currentIndex: index,
-      rightContent,
+      brandName:'',
+      brandId: null,
       // 重新设置 右侧内容的scroll-view标签的距离顶部的距离
       scrollTop: 0
     })
-    this.listGoodByCategoryId(this.Cates[index].children[0].id)
 
   },
   //根据分类加载缓存商品
@@ -206,18 +212,19 @@ Page({
     }
   },
   listGood(e) {
-    var categoryId = e.currentTarget.dataset.id;
+    var brandId = e.currentTarget.dataset.id;
+    var brandName = e.currentTarget.dataset.name;
     var _this = this;
     _this.setData({
-      categoryId
+      brandId,
+      brandName
     });
-    API.listProductBycategoryId({productCategoryId: categoryId}).then(res => {
+    API.listProductBycategoryId({brandId, productCategoryId: this.data.categoryId}).then(res => {
       if (res.data) {
         const goodList = res.data.data.list;
         this.setData({
           goodList: goodList
         })
-        _this.listGoodByCategoryId(categoryId)
       }
     })
   },

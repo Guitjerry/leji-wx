@@ -26,7 +26,9 @@
                         <text class="grid grid-center title">{{item1.name}}
                         </text>
                     </view>
+
                 </view>
+
             </view>
             <view class="{{brandName===''? '': 'brand-title'}}">
                 {{brandName}}
@@ -34,13 +36,18 @@
             <view wx:for="{{goodList}}"  wx:key="*this" class="grid goods_body">
                 <view class="left">
                     <image src="{{item.pic}}"></image>
+                    <view class="label">
+                        <text wx:if="{{item.recommandStatus === 1}}">爆品</text>
+                        <text wx:if="{{item.newStatus === 1}}">新品</text>
+                    </view>
                 </view>
                 <view class="right">
                     <view class="good_name">{{item.name}}</view>
-                    <view class="good_description">{{item.subTitle}}</view>
+                    <view class="good_description">{{item.description|| ''}}</view>
                     <view class="grid good_price">
                         <text class="icon">促</text>
                         <text class="sale_price_pre">{{checked? '￥' + item.price: '￥' + '?'}}</text>
+                        <text class="sale_original_price" wx:if="{{item.originalPrice}}">{{'￥' + item.originalPrice}}</text>
                         <text class="sale_price_last" wx:if="{{item.unit}}">{{'/' + item.unit}}</text>
                     </view>
                     <view class="grid grid-right add_btn">

@@ -67,6 +67,20 @@ page {
   height: 200rpx;
   margin-top: 10rpx;
 }
+.cates .cates_container .right_content .goods_body .label {
+  position:relative;
+  top:-202rpx;
+}
+.cates .cates_container .right_content .goods_body .label text{
+  background-color: #aa3d69;
+  color:#fff;
+  margin-right: 10rpx;
+  margin-bottom: 10prx;
+  padding:6rpx;
+  font-size:20rpx;
+  font-weight:bold;
+  text-aligh:center;
+}
 
 .cates .cates_container .right_content .goods_body .left image {
   width: 100%;
@@ -98,6 +112,12 @@ page {
 .cates .cates_container .right_content .goods_body .right .good_price .sale_price_pre {
   margin-left: 20rpx;
   color: #eb4450;
+  font-weight: bold;
+}
+.cates .cates_container .right_content .goods_body .right .good_price .sale_original_price {
+  margin-left: 20rpx;
+  color: #555c66;
+  text-decoration: line-through;
   font-weight: bold;
 }
 .cates .cates_container .right_content .goods_body .right .good_price .sale_price_last {

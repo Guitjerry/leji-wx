@@ -2,8 +2,9 @@
   <input value="{{inpValue}}" placeholder="请输入您要搜索的商品" bindinput="handleInput"> </input>
   <button bindtap="handleCancel" hidden="{{!isFocus}}">取消</button>
 </view>
+<AuthPhone hidderAuthPhone="{{hidderAuthPhone}}" bind:getPhoneNumber="getPhoneNumber"></AuthPhone>
 <view class="search_content">
-  <navigator url="/pages/goods_detail/index?goods_id={{item.id}}" class="search_item" wx:for="{{goods}}" wx:key="goods_id">
+  <view wx:for="{{goods}}" class="search_item" wx:key="goods_id" catchtap="toDetail" data-id="{{item.id}}">
     <!-- 左侧 图片容器 -->
     <view class="goods_img_wrap">
       <image mode="widthFix" src="{{item.pic?item.pic:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
@@ -11,7 +12,7 @@
     <!-- 右侧 商品容器 -->
     <view class="goods_info_wrap">
       <view class="goods_name">{{item.name}}</view>
-      <view class="goods_price">￥{{item.price}}</view>
+      <view class="goods_price" wx:if="checked">￥{{checked? item.price : '?'}}</view>
     </view>
-  </navigator>
+  </view>
 </view> 

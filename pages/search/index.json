@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "AuthPhone":"../../components/authPhone/authPhone"
+  },
   "navigationBarTitleText":"搜索中心"
 }

@@ -102,12 +102,23 @@ page {
   width: 50rpx;
   text-align: center;
   border-radius: 6rpx;
-  font-size: 24rpx;
+  font-size: 20rpx;
   color: #fff;
-  background: #eb4450;
+  background: #972c33;
 }
+.cates .cates_container .right_content .goods_body .right .good_price .quan {
+  background-color: #d28c0a;
+}
+
+.cates .cates_container .right_content .goods_body .right .good_price .fan {
+  background-color: #303978;
+}
+
 .cates .cates_container .right_content .goods_body .right {
   width: 50%;
+}
+.cates .cates_container .right_content .goods_body .right .good_price {
+  margin-bottom: 10rpx;
 }
 .cates .cates_container .right_content .goods_body .right .good_price .sale_price_pre {
   margin-left: 20rpx;

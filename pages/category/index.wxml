@@ -50,11 +50,23 @@
                         <text class="sale_original_price" wx:if="{{item.originalPrice}}">{{'￥' + item.originalPrice}}</text>
                         <text class="sale_price_last" wx:if="{{item.unit}}">{{'/' + item.unit}}</text>
                     </view>
+                    <view class="grid good_price" wx:for="{{item.smsCouponList}}" wx:for-item="coupon">
+                        <text class="icon quan">券</text>
+                        <text class="sale_price_pre" style="color:#d28c0a">{{coupon.name}}</text>
+                    </view>
+
+                    <view class="grid good_price" wx:for="{{item.fullReductions}}" wx:for-item="reduction">
+                        <text class="icon fan">返</text>
+                        <text class="sale_price_pre" style="color:#303978">{{'满' + reduction.fullPrice + '返' + reduction.reducePrice}}</text>
+                    </view>
+
                     <view class="grid grid-right add_btn">
                         <text bindtap="{{item.count ==0?'':'goodSubtraction'}}" data-index="{{index}}">-</text>
                         <text>{{item.count || 0}}</text>
                         <text bindtap="goodAdd" data-index="{{index}}" data-good="{{item}}">+</text>
                     </view>
+
+
                 </view>
             </view>
         </scroll-view>

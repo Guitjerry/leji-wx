@@ -39,19 +39,6 @@ Page({
       this.setData({
         discountInfo: res.data.data
       })
-      let reducePrice = 0
-      if(res.data.data.discountDtos) {
-        if(res.data.data.discountDtos.length>0) {
-          for (const discount of res.data.data.discountDtos[0].fullReduction) {
-            reducePrice += discount.reducePrice
-          }
-          const resultPrice = this.data.totalPrice -  reducePrice
-          this.setData({
-            totalPrice: resultPrice
-          })
-        }
-
-      }
 
       console.info("返回的优惠信息" + JSON.stringify(this.data.discountInfo))
     })

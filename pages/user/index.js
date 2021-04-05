@@ -26,5 +26,8 @@ Page({
   },
   toCheckUser() {
     wx.navigateTo({'url':'/pages/checkUser/index?type=1'})
+  },
+  toCoupon() {
+    wx.navigateTo({'url':'/pages/coupon/index'})
   }
 })

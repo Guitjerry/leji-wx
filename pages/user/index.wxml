@@ -64,6 +64,7 @@
 <!--      <navigator url="/pages/feedback/index" class="app_info_item">意见反馈</navigator>-->
       <view class="app_info_item">关于我们</view>
       <view class="app_info_item" bindtap="toCheckUser" wx:if="{{isShopAdmin}}">客户审核</view>
+      <view class="app_info_item" bindtap="toCoupon">优惠券中心</view>
     </view>
     <!-- 推荐 -->
 <!--    <view class="recommend_wrap">-->

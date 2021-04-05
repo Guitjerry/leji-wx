@@ -1,0 +1,24 @@
+<!--pages/demo1/demo1.wxml-->
+<view class="blank"></view>
+<view class="coupon-list">
+  <view class="item stamp stamp01 " wx:for="{{availableCoupons}}" wx:for-item="coupon">
+    <!-- 左侧 -->
+    <view class="float-li t1">
+      <view class="coupon-left">
+        <view class="t t1">￥</view>
+        <view class="t t2">{{coupon.amount}}</view>
+        <view class="t t3">{{coupon.name}}</view>
+        <view class="t t4">{{coupon.endTime}}</view>
+      </view>
+    </view>
+    <!-- 右侧 -->
+    <view class="float-li-rig">
+      <view class="coupon-rig">
+        <view class="t1 t">优惠券</view>
+
+        <view class="t3 t"><text>立即领取</text></view>
+      </view>
+    </view>
+    <i></i>
+  </view>
+</view>

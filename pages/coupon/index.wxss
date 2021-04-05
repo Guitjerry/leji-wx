@@ -1,0 +1,163 @@
+/* pages/demo1/demo1.wxss */
+.blank {
+    margin-top: 10rpx;
+}
+.coupon-list {
+    width: 710rpx;
+    margin: 0 auto
+}
+
+.coupon-list .item {
+    width: 710rpx;
+    height: 250rpx;
+    margin-bottom: 20rpx;
+}
+
+.coupon-list .item .float-li {
+    float: left;
+    width: 450rpx;
+    height: 100%;
+    border-right: 2rpx dashed rgba(255, 255, 255, .3)
+}
+
+.coupon-list .item .float-li-rig {
+    width: 220rpx;
+    padding-right: 20rpx;
+    height: 100%;
+    color: #fff;
+    float: right
+}
+
+
+.coupon-left {
+    position: relative
+}
+
+.coupon-left .t {
+    position: absolute;
+    color: #fff
+}
+
+.coupon-left .t1 {
+    left: 10rpx;
+    top: 110rpx
+}
+
+.coupon-left .t2 {
+    left: 30rpx;
+    top: 50rpx;
+    font-size: 80rpx;
+    font-weight: bold,
+}
+
+.coupon-left .t3 {
+    left: 220rpx;
+    top: 50rpx;
+    width: 200rpx;
+    font-size: 30rpx;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.coupon-left .t4 {
+    left: 10rpx;
+    top: 180rpx
+}
+
+.coupon-rig .t {
+    text-align: center;
+    color: #fff
+}
+
+.coupon-rig .t1 {
+    font-size: 40rpx;
+    padding: 30rpx 0 10rpx 0;
+}
+
+.coupon-rig .t3 {
+    padding-top: 20rpx
+}
+
+.coupon-rig .t3 text {
+    background: #fff;
+    color: #333;
+    border-radius: 7rpx;
+    padding: 10rpx 40rpx
+}
+
+
+.note {
+    background: #faeab7
+}
+
+
+.stamp {
+    width: 700rpx;
+    height: 250rpx;
+    margin-bottom: 50rpx;
+    position: relative;
+    overflow: hidden
+}
+
+.stamp i {
+    position: absolute;
+    left: 20%;
+    top: 90rpx;
+    height: 500rpx;
+    width: 700rpx;
+    background-color: rgba(255, 255, 255, .15);
+    transform: rotate(-30deg);
+}
+
+.stamp03 {
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #F39B00 30rpx);
+    background-size: 10rpx 10rpx;
+    background-position: 9rpx 3rpx;
+    background: #F39B00
+}
+
+.stamp01 {
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #D24161 30rpx);
+    background-size: 10rpx 10rpx;
+    background-position: 9rpx 3rpx;
+    background: #D24161
+}
+
+.stamp02 {
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #D24161 30rpx);
+    background-size: 10rpx 10rpx;
+    background-position: 9rpx 3rpx;
+    background: #7EAB1E
+}
+
+.stamp05 {
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #D24161 30rpx);
+    background-size: 10rpx 10rpx;
+    background-position: 9rpx 3rpx;
+    background: #50ADD3
+}
+
+.stamp04 {
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #D24161 30rpx);
+    background-size: 10rpx 10rpx;
+    background-position: 9rpx 3rpx;
+    background: #f0229b
+}
+
+.stamp05 {
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #D24161 30rpx);
+    background-size: 10rpx 10rpx;
+    background-position: 9rpx 3rpx;
+    background: #f0229b
+}
+
+.stamp06 {
+    background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 30rpx, #e2e2e2 30rpx);
+    background-size: 10rpx 10rpx;
+    background-position: 9rpx 3rpx;
+    background: #acacac
+}

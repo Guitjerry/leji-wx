@@ -32,6 +32,7 @@
 <!--                </view>-->
 
             </view>
+        </view>
     </view>
 
     <!-- 头部结束 -->
@@ -41,7 +42,7 @@
     <view class='ms-coupon-list'>
 
         <view class='ms-coupon-main content'>
-            <couponList couponList="{{couponState[isTab].coupon}}" memc_code="{{memc_code}}" pageName="{{pageName}}" bind:selectCoupon="selectCoupon" type="{{states[isTab+1]}}"></couponList>
+            <couponList data="{{couponState[isTab].coupon}}"></couponList>
         </view>
 
 

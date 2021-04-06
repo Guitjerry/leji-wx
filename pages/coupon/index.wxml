@@ -1,4 +1,4 @@
-<view class="ms-coupon-list">
+<view class="ms-coupon-list" style="height:{{wHeight}}px">
   <view class='ms-coupon-item coupon-bg-mj' wx:for="{{availableCoupons}}" wx:key="i">
     <view class="coupon-info " bindtap="receiveCoupon">
       <view class="coupon-price" data-index="{{index}}">
@@ -15,7 +15,7 @@
           </block>
         </view>
       </view>
-      <view class="coupon-name">
+      <view class="coupon-name" bindtap="receiveCoupon">
           <view data-index="{{index}}">
               <view class="name">{{item.name}}</view>
               <view class="date">{{item.startTime}}-{{item.endTime}}</view>
@@ -49,6 +49,10 @@
 <!--    <view class="coupon-rule {{isdescUp == (item.cpns_id+item.memc_code) ? 'open' :''}}">-->
 <!--      <text class="p">{{f.replace(item.description)}}</text>-->
 <!--    </view>-->
+
   </view>
+    <view class="grid grid-center myCoupon" catchtap="toMyCoupon">
+        我的优惠券
+    </view>
 
 </view>

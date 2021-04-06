@@ -2,14 +2,24 @@
 import {request} from "../../request/index";
 
 Page({
-
+    properties: {
+        couponList: {
+            type: Object,
+        },
+    },
     /**
      * 页面的初始数据
      */
     data: {
-        availableCoupons: []
-    },
 
+    },
+    observers: {
+        'couponList': function(couponList) {
+            if (couponList) {
+                console.info(couponList)
+            }
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -28,14 +38,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        request({ url: "/coupon/listWx"})
-            .then(result => {
-                if(result.data.availableCoupons) {
-                    this.setData({
-                        availableCoupons: result.data.availableCoupons
-                    })
-                }
-            })
+        console.info(couponList)
     },
 
     /**

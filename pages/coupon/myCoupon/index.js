@@ -1,5 +1,4 @@
-// pages/demo1/demo1.js
-import {request} from "../../request/index";
+import {request} from "../../../request/index";
 
 Page({
 
@@ -8,7 +7,14 @@ Page({
    */
   data: {
     isTab:0,
-    tabItem: ["未使用", "已使用", "已失效"]
+    tabItem: ["未使用", "已使用", "已失效"],
+    couponState:{},
+    //过期
+    expireCoupons: [],
+    //未使用
+    unUseCoupons:[],
+    //已使用
+    usedCoupons:[]
   },
 
   /**
@@ -29,7 +35,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    request({url: "/coupon/myCoupon"})
+        .then(result => {
+          if(result.data) {
+            let couponState = []
+            couponState.push({coupon: result.data.unUseCoupons})
+            couponState.push({coupon: result.data.usedCoupons})
+            couponState.push({coupon: result.data.expireCoupons})
+            this.setData({
+              couponState
+            })
+          }
+        })
   },
 
   /**

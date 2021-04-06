@@ -1,5 +1,5 @@
 <view class="ms-coupon-list">
-	<view class='ms-coupon-item coupon-bg-mj' wx:for="{{availableCoupons}}" wx:key="i">
+	<view class='ms-coupon-item coupon-bg-mj' wx:for="{{couponList}}" wx:key="i">
 		<view class="coupon-info " bindtap="receiveCoupon">
 			<view class="coupon-price" data-index="{{index}}">
 				<image src="https://s1.miniso.cn/bsimg/ec/public/images/1e/61/1e61d7632198a14b47ba2421e71be422.png" class="coupon-line" wx:if="{{type.class == 'gray'}}"></image>

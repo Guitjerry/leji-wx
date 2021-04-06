@@ -15,7 +15,8 @@
     "pages/pay/index",
     "pages/personal/index",
     "pages/checkUser/index",
-    "pages/coupon/index"
+    "pages/coupon/index",
+    "pages/coupon/myCoupon/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

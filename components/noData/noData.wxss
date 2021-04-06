@@ -1,0 +1,66 @@
+.ms-coupon-none {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f4f4f4;
+    z-index: 1;
+}
+.ms-coupon-none.search{
+    position: relative;
+    height: 60%;
+}
+.ms-coupon-none .content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ms-middle .content {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.ms-coupon-none .content .info {
+    width: 50%;
+    margin-top: -140rpx;
+}
+
+.ms-coupon-none .content .info .image {
+    width: 100%;
+    display: block;
+}
+
+.ms-coupon-none .content .info .text {
+    color: #7f7f7f;
+    font-size: 28rpx;
+    display: block;
+    text-align: center;
+    margin-top: 26.25rpx;
+}
+
+.ms-coupon-none .content .info .addAddress {
+    height: 80rpx;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #E72722;
+    font-size: 28rpx;
+    margin-top: 20rpx;
+}
+
+.ms-coupon-none .goHome {
+    width: 320rpx;
+    height: 80rpx;
+    border-radius: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #E72722;
+    font-size: 28rpx;
+    margin: 120rpx auto 0;
+}

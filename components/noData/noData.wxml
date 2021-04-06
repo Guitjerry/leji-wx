@@ -1,0 +1,10 @@
+<view class="ms-coupon-none ms-middle {{page}}">
+	<view class="content">
+		<view class="info">
+			<image src="{{noData.url}}" mode="widthFix" class="image" />
+			<text class="text">{{noData.text}}</text>
+			<view class="addAddress" wx:if="{{page == 'address'}}" bindtap="addAddress">添加地址</view>
+			<navigator url="/pages/index/index" open-type="switchTab" class="goHome" wx:if="{{page == 'group'}}">返回首页</navigator>
+		</view>
+	</view>
+</view>

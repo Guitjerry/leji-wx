@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "couponList": "/components/couponList/couponList",
+    "noData": "/components/noData/noData"
+  },
+  "navigationBarTitleText":"优惠券中心"
+}

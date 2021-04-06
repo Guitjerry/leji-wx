@@ -1,0 +1,157 @@
+/**优惠卷列表 开始**/
+
+
+
+.ms-coupon-list {
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  padding: 20rpx 30rpx;
+  flex-direction: column;
+}
+.ms-coupon-list .ms-coupon-item {
+  background: #fff;
+  border-right: 8rpx;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.ms-coupon-list .ms-coupon-item:last-child{
+  margin-bottom: 0;
+}
+.ms-coupon-list.detail .ms-coupon-item {
+  box-shadow:0px 0px 8px 0px rgba(0,0,0,0.08);
+}
+.ms-coupon-list .ms-coupon-item .coupon-info{
+  display: flex;
+
+}
+.ms-coupon-list .ms-coupon-item .coupon-price {
+  position: relative;
+  width: 210rpx;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+}
+.ms-coupon-list .ms-coupon-item .coupon-price.red{
+  background-color:#FF250D;
+}
+.ms-coupon-list .ms-coupon-item .coupon-price.yellow{
+
+  background-color:#FFB300;
+}
+.ms-coupon-list .ms-coupon-item .coupon-price.blue{
+
+  background-color:#009AFF;
+}
+.ms-coupon-list .ms-coupon-item .coupon-price .coupon-line {
+  position: absolute;
+  width: 10rpx;
+  height: 100%;
+  right: -1rpx;
+  top:0;
+}
+.ms-coupon-list .ms-coupon-item .coupon-price .min {
+  font-size: 36rpx;
+  margin-right: 10rpx;
+  color: #fff;
+}
+.ms-coupon-list .ms-coupon-item .coupon-price .discounts {
+  font-size: 60rpx;
+  color: #fff;
+}
+.ms-coupon-list .ms-coupon-item .coupon-price .type{
+  font-size: 26rpx;
+  color: #fff;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name {
+  padding: 20rpx;
+  position: relative;
+  flex:2;
+  overflow: hidden;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .state{
+  width: 102rpx;
+  position: absolute;
+  right: 0rpx;
+  top: 0;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .state.get{
+  width: 62rpx;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .tag .item{
+  font-size:22rpx;
+  color: #E72722;
+  border:1px solid #E72722;
+  border-radius: 4rpx;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0rpx 10rpx;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .name{
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 14rpx 0 10rpx;
+  width: 450rpx;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .date{
+  font-size:24rpx;
+  color: #666;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .rule-warp{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .rule-warp .btn{
+  width: 120rpx;
+  height: 48rpx;
+  border-radius: 100rpx;
+  background-color: #E72722;
+  color: #fff;
+  font-size: 22rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .rule{
+  color: #7F7F7F;
+  font-size: 22rpx;
+  padding-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .arrow{
+  width: 40rpx;
+  transition: all 0.3s;
+}
+.ms-coupon-list .ms-coupon-item .coupon-name .arrow.open {
+  transform: rotate(-180deg);
+}
+.ms-coupon-list .ms-coupon-item .coupon-rule{
+  border-top:1px solid #ededed;
+  padding:20rpx 30rpx;
+  color: #666666;
+  font-size: 24rpx;
+  display: none;
+  line-height: 40rpx;
+  margin-top: -1px;
+}
+.ms-coupon-list .ms-coupon-item .coupon-rule.open{
+  display: block;
+}
+
+.ms-coupon-list .ms-coupon-item.gray .coupon-price{
+  background-color: #ccc;
+}
+
+.ms-coupon-list .ms-coupon-item.gray .coupon-name .tag .item{
+  border-color: #7F7F7F;
+  color: #7F7F7F;
+}
+

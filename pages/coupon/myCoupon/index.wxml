@@ -1,0 +1,61 @@
+<scroll-view scroll-y bindscrolltolower="getData" wx:key="unique" class='ms-container ms-container-coupon'>
+    <!-- 头部开始 -->
+    <view class='ms-fixed-coupon'>
+        <view class='ms-header-coupon ms-fixed-top'>
+            <view class='ms-content'>
+
+                <view class='ms-filter ms-filter-tab'>
+                    <view class='ms-content'>
+                        <view class='item-nav'>
+                            <view class='item {{ isTab == num ? "active" : "" }}' wx:for="{{tabItem}}" wx:for-index="num" wx:key="i" data-number='{{num}}'>
+
+                                <text data-number='{{num}}' class>{{ item }}</text>
+
+                            </view>
+                        </view>
+                    </view>
+                </view>
+
+<!--                <view class='ms-coupon-header ms-row'>-->
+<!--                    <view class='content'>-->
+<!--                        <view>-->
+<!--                            <input type='text' placeholder-class="phcolor" placeholder="请输入优惠券码" bindinput="bindKeyInput" value="{{inputValue}}"></input>-->
+<!--                        </view>-->
+<!--                        <text bindtap='getExchange' class='{{inputValue ? "cur" : ""}}'>兑换</text>-->
+<!--                    </view>-->
+<!--                    <view class='ms-rule'>-->
+<!--                        <navigator class='ms-main' url="/shopPage/pages/longText/index?type=2">-->
+<!--                            <image src='https://s1.miniso.cn/bsimg/ec/public/images/9e/ab/9eab3cbb9a912d9216372718996cdda0.png' mode='widthFix'></image>-->
+<!--                            <text class="text">帮助</text>-->
+<!--                        </navigator>-->
+<!--                    </view>-->
+<!--                </view>-->
+
+            </view>
+    </view>
+
+    <!-- 头部结束 -->
+
+
+    <!-- 优惠卷列表 开始 -->
+    <view class='ms-coupon-list'>
+
+        <view class='ms-coupon-main content'>
+            <couponList couponList="{{couponState[isTab].coupon}}" memc_code="{{memc_code}}" pageName="{{pageName}}" bind:selectCoupon="selectCoupon" type="{{states[isTab+1]}}"></couponList>
+        </view>
+
+
+    </view>
+    <!-- 优惠卷列表 结束 -->
+
+    <!-- 暂无优惠卷 开始 -->
+    <view wx:if="{{couponState[isTab].coupon.length == 0}}" class='noData'>
+        <noData noData="{{sNoData}}"></noData>
+    </view>
+    <!-- 暂无优惠卷 结束 -->
+</scroll-view>
+<view class="ms-coupon-button" wx:if="{{pageName == 'order'}}">
+    <view class="content" bindtap='back'>
+        <text class="btn">不使用优惠券</text>
+    </view>
+</view>

@@ -16,9 +16,11 @@
       <view class="coupon-rig">
         <view class="t1 t">优惠券</view>
 
-        <view class="t3 t"><text>立即领取</text></view>
+        <view class="t3 t" bindtap="receiveCoupon" data-id="{{coupon.id}}"><text>立即领取</text></view>
       </view>
     </view>
-    <i></i>
+  </view>
+  <view class="grid grid-center myCoupon">
+    我的优惠券
   </view>
 </view>

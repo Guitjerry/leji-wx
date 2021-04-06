@@ -161,3 +161,8 @@
     background-position: 9rpx 3rpx;
     background: #acacac
 }
+.myCoupon {
+    font-weight: bold;
+    font-size: 24rpx;
+    text-decoration: underline;
+}

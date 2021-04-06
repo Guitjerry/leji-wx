@@ -71,5 +71,22 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  receiveCoupon: function (e) {
+    const id = e.currentTarget.dataset.id
+    //请求接收优惠券
+    request({ url: "/coupon/receiveCoupon/" + id})
+        .then(result => {
+          if(result.data) {
+           wx.showToast({
+             'title':'领取成功',
+           })
+          }
+        }).catch(resp=> {
+            wx.showToast({
+                'title':resp.message,
+                'icon':"none"
+            })
+    })
   }
 })

@@ -1,5 +1,5 @@
 <!-- 收货地址 -->
-<scroll-view class="order_main" style="height:auto">
+<scroll-view class="order_main" style="height:1380rpx">
     <view style="height:10rpx"></view>
     <view class="revice_address_row">
         <view   class="user_info_row" >

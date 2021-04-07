@@ -87,7 +87,7 @@ Page({
     const user = wx.getStorageSync('USER')
     const data = {addresses:this.data.address, carts:this.data.cart, memberId: user.id,note: this.data.note}
     API.createOrder(data).then(res=> {
-      if(res.code === 200) {
+      if(res.data.code === 200) {
         wx.hideLoading()
         //跳转到订单详情页面
         wx.redirectTo({

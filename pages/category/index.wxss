@@ -124,12 +124,17 @@ page {
   margin-left: 20rpx;
   color: #eb4450;
   font-weight: bold;
+  text-overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
+  word-wrap:break-word;
+  width:40%;
 }
 .cates .cates_container .right_content .goods_body .right .good_price .sale_original_price {
-  margin-left: 20rpx;
   color: #555c66;
   text-decoration: line-through;
   font-weight: bold;
+  font-size:24rpx;
 }
 .cates .cates_container .right_content .goods_body .right .good_price .sale_price_last {
   color: #eb4450;
@@ -252,4 +257,23 @@ page {
 .closeImg_image {
   width: 50rpx;
   height: 50rpx;
+}
+
+.goodTip {
+  margin-top: 10rpx;
+  color: #a6a6a6;
+  font-size: 20rpx;
+}
+.goodTip text {
+  margin-left: 10rpx;
+  padding: 10rpx;
+}
+.saleOut {
+  background-color: #161616;
+  color: #e6e6e6;
+  padding: 10rpx;
+  margin-right: 10rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 10rpx;
 }

@@ -26,10 +26,12 @@ Page({
     address: {
 
     },
+    wHeight:0,
     note:'',
     cart: [],
     totalPrice: 0,
-    totalNum: 0
+    totalNum: 0,
+    orderInfo:{}
   },
   queryDiscount() {
     let cart = wx.getStorageSync("cart") || [];
@@ -37,10 +39,21 @@ Page({
     const data = {carts:this.data.cart, memberId: user.uid}
     API.queryDiscount(data).then(res=> {
       this.setData({
-        discountInfo: res.data.data
+        orderInfo: res.data
+
       })
 
       console.info("返回的优惠信息" + JSON.stringify(this.data.discountInfo))
+    })
+  },
+  onLoad() {
+    const that = this
+    wx.getSystemInfo({
+      success:function (res) {
+        that.setData({
+          wHeight: res.windowHeight
+        })
+      }
     })
   },
   onShow() {
@@ -68,12 +81,13 @@ Page({
   },
   createOrder(){
     wx.showToast({
-      title: '正在提交'
+      title: '正在提交',
+      'icon':'none'
     })
     const user = wx.getStorageSync('USER')
     const data = {addresses:this.data.address, carts:this.data.cart, memberId: user.id,note: this.data.note}
     API.createOrder(data).then(res=> {
-      if(res.data) {
+      if(res.code === 200) {
         wx.hideLoading()
         //跳转到订单详情页面
         wx.redirectTo({
@@ -81,6 +95,12 @@ Page({
         })
         wx.setStorageSync("cart", null)
         wx.setStorageSync("address", null)
+      }else {
+        wx.hideToast()
+        wx.showToast({
+          'title': res.data.message,
+          'icon':'none'
+        })
       }
     }).catch(resp=>{
 

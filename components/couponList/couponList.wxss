@@ -146,11 +146,11 @@
   display: block;
 }
 
-.ms-coupon-list .ms-coupon-item.gray .coupon-price{
-  background-color: #ccc;
+.ms-coupon-list .ms-coupon-item .coupon-price{
+  background-color: #b94a48;
 }
 
-.ms-coupon-list .ms-coupon-item.gray .coupon-name .tag .item{
+.ms-coupon-list .ms-coupon-item .coupon-name .tag .item{
   border-color: #7F7F7F;
   color: #7F7F7F;
 }

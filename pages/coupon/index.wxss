@@ -134,7 +134,12 @@
 .myCoupon {
     font-weight: bold;
     font-size: 24rpx;
+    position: absolute;
+    left: 41%;
+    cursor: pointer;
+    color: #b94a48;
     text-decoration: underline;
+    z-index: 999;
 }
 
 /**优惠卷列表 开始**/

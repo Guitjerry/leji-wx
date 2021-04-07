@@ -1,12 +1,8 @@
-<view class="ms-coupon-list">
-	<view class='ms-coupon-item coupon-bg-mj' wx:for="{{couponList}}" wx:key="i">
+<view class="ms-coupon-list" style="height:{{wHeight}}px">
+	<view class='ms-coupon-item coupon-bg-mj' wx:for="{{coupons}}" wx:key="i">
 		<view class="coupon-info " bindtap="receiveCoupon">
 			<view class="coupon-price" data-index="{{index}}">
-				<image src="https://s1.miniso.cn/bsimg/ec/public/images/1e/61/1e61d7632198a14b47ba2421e71be422.png" class="coupon-line" wx:if="{{type.class == 'gray'}}"></image>
-
-				<image  src="https://s1.miniso.cn/bsimg/ec/public/images/c0/d3/c0d3464983dff42bfdc03ffa94818809.png" class="coupon-line" wx:elif="{{couponType[item.coupon_type].class == 'yellow'}}"></image>
-				<image  src="https://s1.miniso.cn/bsimg/ec/public/images/d0/63/d0630df1e7abbb201bf7408c6e1f0e6b.png" class="coupon-line" wx:elif="{{couponType[item.coupon_type].class == 'red'}}"></image>
-				<image  src="https://s1.miniso.cn/bsimg/ec/public/images/e3/dc/e3dcf5f91b63c4fc4f85d9c27a07f3c7.png" class="coupon-line" wx:else></image>
+				<image  src="https://s1.miniso.cn/bsimg/ec/public/images/d0/63/d0630df1e7abbb201bf7408c6e1f0e6b.png" class="coupon-line"></image>
 				<view class="price">
 					<!-- 价格 -->
 					<block>
@@ -18,7 +14,7 @@
 			<view class="coupon-name">
 				<view data-index="{{index}}">
 					<view class="name">{{item.name}}</view>
-					<view class="date">{{item.startTime}}-{{item.endTime}}</view>
+					<view class="date">{{item.startTime}}至{{item.endTime}}</view>
 				</view>
 				<!--        <view class="rule-warp">-->
 				<!--          <view class="rule " bindtap="descUp" data-id="{{item.cpns_id}}" data-code="{{item.memc_code}}">-->

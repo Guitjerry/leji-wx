@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText":"优惠券中心"
+  "usingComponents": {
+    "noData": "/components/noData/noData"
+  },
+  "navigationBarTitleText":"领券中心"
 }

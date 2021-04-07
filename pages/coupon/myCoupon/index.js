@@ -8,13 +8,17 @@ Page({
   data: {
     isTab:0,
     tabItem: ["未使用", "已使用", "已失效"],
-    couponState:{},
     //过期
     expireCoupons: [],
     //未使用
     unUseCoupons:[],
     //已使用
-    usedCoupons:[]
+    usedCoupons:[],
+    coupons:[],
+    sNoData: {
+      url: "https://s1.miniso.cn/bsimg/ec/public/images/f3/b7/f3b7dc5a8fddab547ab73ba53f5ffd55.png",
+      text: "暂无优惠券"
+    }
   },
 
   /**
@@ -38,13 +42,12 @@ Page({
     request({url: "/coupon/myCoupon"})
         .then(result => {
           if(result.data) {
-            let couponState = []
-            couponState.push({coupon: result.data.unUseCoupons})
-            couponState.push({coupon: result.data.usedCoupons})
-            couponState.push({coupon: result.data.expireCoupons})
             this.setData({
-              couponState
+              unUseCoupons: result.data.unUseCoupons,
+              usedCoupons: result.data.usedCoupons,
+              expireCoupons: result.data.expireCoupons
             })
+            this.getData(0)
           }
         })
   },
@@ -83,7 +86,30 @@ Page({
   onShareAppMessage: function () {
 
   },
-  receiveCoupon: function (e) {
-    const id = e.currentTarget.dataset.id
-  }
+  getData(tab) {
+    if(tab === 0) {
+      //未使用
+      this.setData({
+        coupons:this.data.unUseCoupons
+      })
+    }else if(tab===1){
+      this.setData({
+        coupons:this.data.usedCoupons
+      })
+    }else if(tab===2){
+      this.setData({
+        coupons:this.data.expireCoupons
+      })
+    }
+  },
+  /**
+   * tab点击
+   */
+  isTabfun: function (e) {
+    if (this.data.isTab == e.target.dataset.number) return;
+    this.setData({
+      isTab: e.target.dataset.number,
+    });
+    this.getData(e.target.dataset.number);
+  },
 })

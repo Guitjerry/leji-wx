@@ -1,57 +1,43 @@
 <view class="ms-coupon-list" style="height:{{wHeight}}px">
-  <view class='ms-coupon-item coupon-bg-mj' wx:for="{{availableCoupons}}" wx:key="i">
-    <view class="coupon-info " bindtap="receiveCoupon">
-      <view class="coupon-price" data-index="{{index}}">
-        <image src="https://s1.miniso.cn/bsimg/ec/public/images/1e/61/1e61d7632198a14b47ba2421e71be422.png" class="coupon-line" wx:if="{{type.class == 'gray'}}"></image>
+    <view class="all-coupon">
+        <view class='ms-coupon-item coupon-bg-mj' wx:for="{{availableCoupons}}" wx:key="i">
+            <view class="coupon-info " bindtap="receiveCoupon">
+                <view class="coupon-price" data-index="{{index}}">
+                    <image src="https://s1.miniso.cn/bsimg/ec/public/images/1e/61/1e61d7632198a14b47ba2421e71be422.png" class="coupon-line" wx:if="{{type.class == 'gray'}}"></image>
 
-        <image  src="https://s1.miniso.cn/bsimg/ec/public/images/c0/d3/c0d3464983dff42bfdc03ffa94818809.png" class="coupon-line" wx:elif="{{couponType[item.coupon_type].class == 'yellow'}}"></image>
-        <image  src="https://s1.miniso.cn/bsimg/ec/public/images/d0/63/d0630df1e7abbb201bf7408c6e1f0e6b.png" class="coupon-line" wx:elif="{{couponType[item.coupon_type].class == 'red'}}"></image>
-        <image  src="https://s1.miniso.cn/bsimg/ec/public/images/e3/dc/e3dcf5f91b63c4fc4f85d9c27a07f3c7.png" class="coupon-line" wx:else></image>
-        <view class="price">
-          <!-- 价格 -->
-          <block>
-            <text class='min'>¥</text>
-            <text class='discounts'>{{item.amount}}</text>
-          </block>
+                    <image  src="https://s1.miniso.cn/bsimg/ec/public/images/c0/d3/c0d3464983dff42bfdc03ffa94818809.png" class="coupon-line" wx:elif="{{couponType[item.coupon_type].class == 'yellow'}}"></image>
+                    <image  src="https://s1.miniso.cn/bsimg/ec/public/images/d0/63/d0630df1e7abbb201bf7408c6e1f0e6b.png" class="coupon-line" wx:elif="{{couponType[item.coupon_type].class == 'red'}}"></image>
+                    <image  src="https://s1.miniso.cn/bsimg/ec/public/images/e3/dc/e3dcf5f91b63c4fc4f85d9c27a07f3c7.png" class="coupon-line" wx:else></image>
+                    <view class="price">
+                        <!-- 价格 -->
+                        <block>
+                            <text class='min'>¥</text>
+                            <text class='discounts'>{{item.amount}}</text>
+                        </block>
+                    </view>
+                </view>
+                <view class="coupon-name">
+                    <view data-index="{{index}}">
+                        <view class="name">{{item.name}}</view>
+                        <view class="date">{{item.startTime}}至{{item.endTime}}</view>
+                        <view class="tag" catchtap="receiveCoupon" data-id="{{item.id}}">
+                            <text class="item">立即领取</text>
+                        </view>
+                    </view>
+                    <!-- 暂无优惠卷 开始 -->
+                </view>
+            </view>
+            <!--    <view class="coupon-rule {{isdescUp == (item.cpns_id+item.memc_code) ? 'open' :''}}">-->
+            <!--      <text class="p">{{f.replace(item.description)}}</text>-->
+            <!--    </view>-->
+
         </view>
-      </view>
-      <view class="coupon-name" bindtap="receiveCoupon">
-          <view data-index="{{index}}">
-              <view class="name">{{item.name}}</view>
-              <view class="date">{{item.startTime}}-{{item.endTime}}</view>
-              <view class="tag">
-                  <text class="item">立即领取</text>
-              </view>
-          </view>
-<!--        <view class="rule-warp">-->
-<!--          <view class="rule " bindtap="descUp" data-id="{{item.cpns_id}}" data-code="{{item.memc_code}}">-->
-<!--            使用规则 <image class="arrow {{isdescUp == (item.cpns_id+item.memc_code) ? 'open' :''}}" src="https://s1.miniso.cn/bsimg/ec/public/images/7d/15/7d15663dad6e9c954bd8c111e41ce6bc.png" mode="widthFix"></image>-->
-<!--          </view>-->
-<!--          <view class="button-warp">-->
-<!--            <navigator url="{{item.use_range_type == 1 ? '/pages/index/index':'/shop/cumulativeOrder/index?type=coupon&id='+item.rule_id}}" wx:if="{{((pageName == 'list' && type.status == 1) || (pageName == 'detail' && couponState[item.cpns_id].is_receive) )&& !isGroup}}" open-type='{{item.use_range_type == 1 ?"switchTab":"navigate"}}' class="btn">{{pageName == 'detail'? '立即使用':'去使用'}}</navigator>-->
-<!--            <view class="btn" bindtap="getCoupon" wx:if="{{pageName == 'detail' && !couponState[item.cpns_id].is_receive}}" data-index="{{index}}">点击领取</view>-->
-
-
-<!--          </view>-->
-<!--        </view>-->
-
-        <!-- 已选择 -->
-<!--        <image class="state get" mode="widthFix" src='https://s1.miniso.cn/bsimg/ec/public/images/dc/69/dc69b865cf901059a4900f0ef5fd8023.png' wx:if="{{pageName == 'order' && item.memc_code == memc_code}}"></image>-->
-<!--        &lt;!&ndash; 已失效 &ndash;&gt;-->
-<!--        <image class="state" mode="widthFix" src='https://s1.miniso.cn/bsimg/ec/public/images/f7/e0/f7e053e205f8f970236db589135cf37d.png' wx:if="{{type.status == 3}}"></image>-->
-<!--        &lt;!&ndash; 已使用 &ndash;&gt;-->
-<!--        <image class="state" mode="widthFix" src='https://s1.miniso.cn/bsimg/ec/public/images/04/62/0462a519e5bb79ff6ed1d31ee6803d1a.png' wx:if="{{type.status == 2}}"></image>-->
-<!--        &lt;!&ndash; 已领取 &ndash;&gt;-->
-<!--        <image class="state " mode="widthFix" src='https://s1.miniso.cn/bsimg/ec/public/images/8f/59/8f59523f22dc7824f3c18bb1f1dbe682.png' wx:if="{{couponState[item.cpns_id].is_receive}}"></image>-->
-
-      </view>
     </view>
-<!--    <view class="coupon-rule {{isdescUp == (item.cpns_id+item.memc_code) ? 'open' :''}}">-->
-<!--      <text class="p">{{f.replace(item.description)}}</text>-->
-<!--    </view>-->
 
-  </view>
-    <view class="grid grid-center myCoupon" catchtap="toMyCoupon">
+    <view wx:if="{{availableCoupons.length == 0}}" class='noData'>
+        <noData noData="{{sNoData}}"></noData>
+    </view>
+    <view class="grid grid-center myCoupon" catchtap="toMyCoupon" style="top:{{availableCoupons.length == 0? wHeight/2+60+'px': myCouponTip + 'px'}}">
         我的优惠券
     </view>
 

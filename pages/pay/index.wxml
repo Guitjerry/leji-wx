@@ -1,73 +1,78 @@
 <!-- 收货地址 -->
-<view class="revice_address_row">
-    <view   class="user_info_row" >
-      <view class="user_info">
-        <view>{{address.userName}}</view>
-        <view>{{address.all}}</view>
-      </view>
-      <view class="user_phone">{{address.telNumber}}</view>
-    </view>
-  </view>
-
-  <!-- 购物车内容 -->
-  <view class="cart_content">
-    <view class="cart_title">商品信息</view>
-    <view class="cart_main">
-          <view class="cart_item"
-        wx:for="{{cart}}"
-        wx:key="goods_id"
-        >
-            <!-- 商品图片 -->
-            <navigator class="cart_img_wrap">
-            <image mode="widthFix" src="{{item.pic}}" ></image>
-            </navigator>
-            <!-- 商品信息 -->
-            <view class="cart_info_wrap">
-              <view class="goods_name">{{item.name}}</view>
-              <view class="goods_price_wrap grid grid-between">
-                <view class="goods_price">￥{{item.price}}</view>
-                <view class="cart_num_tool">
-                  <view class="goods_num">X {{item.count}}</view>
-                </view>
-              </view>
+<scroll-view class="order_main" style="height:auto">
+    <view style="height:10rpx"></view>
+    <view class="revice_address_row">
+        <view   class="user_info_row" >
+            <view class="user_info">
+                <view>{{address.userName}}</view>
+                <view>{{address.all}}</view>
             </view>
-          </view>
-    </view>
-    <view class="cart_title">优惠信息</view>
-    <view class="discount_main" wx:if="{{discountInfo.discountDtos.length>0}}" wx:for="{{discountInfo.discountDtos}}">
-        <view class="discount_main_man grid" wx:if="{{item.fullReduction.length>0}}">
-            <text>满</text>
-            <text class="info" >{{item.discountNote}}</text>
-            <text class="price">-￥{{item.fullReduction[0].reducePrice}}</text>
-        </view>
-        <view class="discount_main_zhe grid" wx:if="{{item.pmsProductLadder.length>0}}">
-            <text>{{item.pmsProductLadder[0].discount}}折</text>
-            <text class="info">{{item.discountNote}}</text>
-            <text class="price"> -￥{{item.pmsProductLadder[0].discountDesc}}</text>
+            <view class="user_phone">{{address.telNumber}}</view>
         </view>
     </view>
-      <view class="discount_main" wx:if="{{discountInfo.coupons.length>0}}" wx:for="{{discountInfo.coupons}}">
-          <view class="discount_main_quan grid">
-              <text>券</text>
-              <text class="info">{{discountInfo.coupons[0].name}}</text>
-              <text class="price">-￥{{discountInfo.coupons[0].amount}}</text>
-          </view>
-      </view>
 
-    <view class="cart_title">备注信息</view>
-    <textarea class="textarea-bg" placeholder="请输入备注信息" value="{{note}}" maxlength="300" bindblur="getDataBindTap" auto-height />
-  </view>
+    <!-- 购物车内容 -->
+    <view class="cart_content">
+        <view class="cart_main">
+            <view class="cart_item"
+                  wx:for="{{cart}}"
+                  wx:key="goods_id"
+            >
+                <!-- 商品图片 -->
+                <navigator class="cart_img_wrap">
+                    <image mode="widthFix" src="{{item.pic}}" ></image>
+                </navigator>
+                <!-- 商品信息 -->
+                <view class="cart_info_wrap">
+                    <view class="goods_name">{{item.name}}</view>
+                    <view class="goods_price_wrap grid grid-between">
+                        <view class="goods_price">￥{{item.price}}</view>
+                        <view class="cart_num_tool">
+                            <view class="goods_num">X {{item.count}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="discount_main" wx:if="{{orderInfo.data.discountDtos.length>0}}" wx:for="{{discountInfo.discountDtos}}">
+            <view class="discount_main_man grid" wx:if="{{item.fullReduction.length>0 && orderInfo.data.discountType === 1}}">
+                <text>满减合计</text>
+                <text class="info" >{{item.discountNote}}</text>
+                <text class="price">-￥{{item.fullReduction[0].reducePrice}}</text>
+            </view>
+            <view class="discount_main_zhe grid" wx:if="{{item.pmsProductLadder.length>0 && orderInfo.data.discountType === 2}}">
+                <text>折扣优惠</text>
+                <text class="price"> -￥{{item.pmsProductLadder[0].discountDesc}}</text>
+            </view>
+        </view>
 
-  <!-- 底部工具栏 -->
-  <view class="footer_tool">
-    <!-- 总价格 -->
-    <view class="total_price_wrap">
-      <view class="total_price">
-        合计: <text class="total_price_text">￥{{totalPrice}}</text>
-      </view>
-      <view>包含运费</view>
     </view>
-    <view class="order_pay_wrap" bindtap="handleOrderPay"  >
-      立即订购
+    <view class="discount_main" wx:if="{{orderInfo.data.coupons.length>0 && orderInfo.data.discountType === 3}}" wx:for="{{orderInfo.data.coupons}}">
+        <view class="grid grid-between">
+            <text>优惠券</text>
+            <text class="info" style="width:70%;">{{orderInfo.data.coupons[0].name}}</text>
+<!--            <text class="price">￥{{orderInfo.data.coupons[0].amount}}</text>-->
+        </view>
+        <view class="grid grid-between">
+            <text>优惠减免合计</text>
+            <text style="width:70%;text-align:right;margin-right:10rpx">￥{{orderInfo.data.allDiscountMoney}}</text>
+        </view>
     </view>
-  </view>
+
+    <textarea class="textarea-bg" style="height:300rpx" placeholder="请输入备注信息" value="{{note}}" maxlength="300" bindblur="getDataBindTap" auto-height />
+    <view style="height:10rpx"></view>
+    <!-- 底部工具栏 -->
+    <view class="footer_tool">
+        <!-- 总价格 -->
+        <view class="total_price_wrap">
+            <view class="total_price">
+                合计: <text class="total_price_text">￥{{orderInfo.data.payAmount}}</text>
+            </view>
+            <view>包含运费</view>
+        </view>
+        <view class="order_pay_wrap" bindtap="handleOrderPay"  >
+            立即订购
+        </view>
+    </view>
+</scroll-view>
+

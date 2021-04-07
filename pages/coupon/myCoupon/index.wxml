@@ -7,7 +7,7 @@
                 <view class='ms-filter ms-filter-tab'>
                     <view class='ms-content'>
                         <view class='item-nav'>
-                            <view class='item {{ isTab == num ? "active" : "" }}' wx:for="{{tabItem}}" wx:for-index="num" wx:key="i" data-number='{{num}}'>
+                            <view class='item {{ isTab == num ? "active" : "" }}' wx:for="{{tabItem}}" wx:for-index="num" wx:key="i" data-number='{{num}}' catchtap="isTabfun">
 
                                 <text data-number='{{num}}' class>{{ item }}</text>
 
@@ -40,17 +40,14 @@
 
     <!-- 优惠卷列表 开始 -->
     <view class='ms-coupon-list'>
-
         <view class='ms-coupon-main content'>
-            <couponList data="{{couponState[isTab].coupon}}"></couponList>
+            <couponList coupons="{{coupons}}"></couponList>
         </view>
-
-
     </view>
     <!-- 优惠卷列表 结束 -->
 
     <!-- 暂无优惠卷 开始 -->
-    <view wx:if="{{couponState[isTab].coupon.length == 0}}" class='noData'>
+    <view wx:if="{{coupons.length == 0}}" class='noData'>
         <noData noData="{{sNoData}}"></noData>
     </view>
     <!-- 暂无优惠卷 结束 -->

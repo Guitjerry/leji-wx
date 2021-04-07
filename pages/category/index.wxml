@@ -59,11 +59,18 @@
                         <text class="icon fan">返</text>
                         <text class="sale_price_pre" style="color:#303978">{{'满' + reduction.fullPrice + '返' + reduction.reducePrice}}</text>
                     </view>
+                    <view class="goodTip grid">
+                        <text class="grid grid-center">销量：{{item.sale}}</text>
+                        <text class="grid grid-center">库存: {{item.stock}}</text>
+                    </view>
 
-                    <view class="grid grid-right add_btn">
+                    <view class="grid grid-right add_btn" wx:if="{{item.stock> 0}}">
                         <text bindtap="{{item.count ==0?'':'goodSubtraction'}}" data-index="{{index}}">-</text>
                         <text>{{item.count || 0}}</text>
                         <text bindtap="goodAdd" data-index="{{index}}" data-good="{{item}}">+</text>
+                    </view>
+                    <view wx:else class="grid grid-center saleOut">
+                        <text class="grid grid-center">已售罄</text>
                     </view>
 
 

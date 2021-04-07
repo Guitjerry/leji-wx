@@ -117,6 +117,7 @@ page {
   font-weight: 600;
 }
 .footer_tool .order_pay_wrap {
+  z-index: 999;
   flex: 3;
   background-color: var(--themeColor);
   color: #fff;

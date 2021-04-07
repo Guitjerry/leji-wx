@@ -66,7 +66,7 @@
         </view>
 
         <view class="grid  body">
-          <view wx:for="{{newGoodList}}" wx:key="id" wx:if="{{index<5}}" class="single" bindtap="goToGoodDetail"
+          <view wx:for="{{newGoodList}}" wx:key="id" wx:if="{{index<10}}" class="single" bindtap="goToGoodDetail"
                 data-id="{{item.id}}" data-show="{{item.isShow}}">
             <view class="image">
               <image src="{{item.pic}}"></image>
@@ -74,10 +74,12 @@
             <view class="title">
               {{item.productName}}
             </view>
-            <view class="info">
-              {{item.isShow===1? '￥' + item.originalPrice: '￥' + '?'}}元
+            <view class="info grid grid-center">
+                <text>{{item.isShow===1? '￥' + item.price: '￥' + '?'}}元</text>
+                <text class="showPrice">{{item.isShow===1? '￥' + item.originalPrice: '￥' + '?'}}元</text>
+                <text wx:if="{{item.unit}}">/{{item.unit}}</text>
             </view>
-            <view class="desc" wx:if="{{user.phone==='' || user.phone===null && item.isShow===0}}">窥探优惠</view>
+            <view class="desc" wx:if="{{item.isShow===0}}">窥探优惠</view>
           </view>
         </view>
     </view>
@@ -93,7 +95,7 @@
         </view>
 
         <view class="grid body">
-            <view wx:for="{{RecommendProductList}}" wx:key="id" wx:if="{{index<5}}" class="single" data-id="{{item.id}}" bindtap="goToGoodDetail">
+            <view wx:for="{{RecommendProductList}}" wx:key="id" wx:if="{{index<10}}" class="single" data-id="{{item.id}}" bindtap="goToGoodDetail">
                 <view class="image">
                     <image src="{{item.pic}}"></image>
                 </view>
@@ -101,7 +103,8 @@
                     {{item.subTitle}}
                 </view>
                 <view class="info">
-                    <text>￥{{item.isShow===1? item.originalPrice: '?'}}元</text>
+                    <text>{{item.isShow===1? '￥' + item.price: '￥' + '?'}}元</text>
+                    <text class="showPrice">{{item.isShow===1? '￥' + item.originalPrice: '￥' + '?'}}元</text>
                     <text wx:if="{{item.unit}}">/{{item.unit}}</text>
 
                 </view>

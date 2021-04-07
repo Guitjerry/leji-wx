@@ -68,7 +68,13 @@
 }
 .sale_recommend .body .single{
   padding: 10rpx;
-
+  width: 24%;
+}
+.sale_recommend .body .single .info .showPrice{
+  margin-left: 10rpx;
+  font-size: 20rpx;
+  color: #a6a6a6;
+  text-decoration: line-through;
 }
 .sale_recommend .body image {
   width: 120rpx;
@@ -146,6 +152,12 @@
   border: 1rpx solid #f6f6f6;
   margin: 10rpx;
 }
+.hot_recommend .body .single .info .showPrice{
+  margin-left: 10rpx;
+  font-size: 20rpx;
+  color: #a6a6a6;
+  text-decoration: line-through;
+}
 .hot_recommend .body image {
   width: 286rpx;
   height: 286rpx;
@@ -194,6 +206,7 @@
 .brand_zone .body .single{
   padding: 7rpx;
   margin:5rpx;
+  width: 23%;
 }
 .brand_zone .body image {
   width: 155rpx;

@@ -1,9 +1,18 @@
 page {
   padding-bottom: 90rpx;
 }
+.order_main {
+  background: #e6e6e6;
+}
+.revice_address_row {
+  background: #fff;
+  padding: 10rpx;
+  margin: 10rpx;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+}
 .revice_address_row .user_info_row {
   display: flex;
-  padding: 20rpx;
 }
 .revice_address_row .user_info_row .user_info {
   flex: 5;
@@ -12,8 +21,14 @@ page {
   flex: 3;
   text-align: right;
 }
-.cart_content .cart_title {
+.cart_content {
   padding: 10rpx;
+  margin: 10rpx;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  background: #fff;
+}
+.cart_content .cart_title {
   font-size: 28rpx;
   font-weight: bold;
   color: var(--themeColor);
@@ -58,7 +73,7 @@ page {
   display: flex;
 }
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .cart_num_tool .goods_num {
-  width: 90rpx;
+  width: auto;
   height: 55rpx;
   display: flex;
   justify-content: center;
@@ -98,6 +113,10 @@ page {
 .discount_main {
   padding: 10rpx;
   font-size: 24rpx;
+  margin: 10rpx;
+  border-radius: 10rpx;
+  background: #fff;
+
 }
 .discount_main .discount_main_man {
   margin-bottom: 10rpx;
@@ -143,15 +162,13 @@ page {
   width: 10%;
 }
 .discount_main .discount_main_quan text:first-child{
-  color: #fff;
-  background: #44b9af;
   padding: 8rpx;
   text-align: center;
   font-weight: bold;
   font-size: 20rpx;
   border-radius: 5rpx;
   margin-right: 20rpx;
-  width: 10%;
+  width: 23%;
 }
 
 
@@ -164,8 +181,9 @@ textarea {
 }
 
 .textarea-bg {
-  background-color: #f6f6f6;
+  background-color: #fff;
   padding: 10rpx;
-  font-size: 32rpx;
+  border-radius: 10rpx;
+  font-size: 26rpx;
 }
 
